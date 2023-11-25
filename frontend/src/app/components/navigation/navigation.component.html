@@ -2,7 +2,7 @@
   <span
     *ngFor="let link of links"
     (click)="navigate(link.navigation)"
-    [class]="link.name === activePage ? ' border-content border-b-2' : ''"
+    [class]="link.name === activePage ? ' border-b-2 border-content' : ''"
     >{{ link.name }}</span
   >
 </div>
