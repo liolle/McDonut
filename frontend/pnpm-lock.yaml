@@ -44,6 +44,9 @@ dependencies:
   '@ng-icons/core':
     specifier: ^26.1.0
     version: 26.1.0
+  '@ng-icons/feather-icons':
+    specifier: ^26.1.0
+    version: 26.1.0
   '@ng-icons/radix-icons':
     specifier: ^26.1.0
     version: 26.1.0
@@ -3134,6 +3137,12 @@ packages:
 
   /@ng-icons/core@26.1.0:
     resolution: {integrity: sha512-pZSNJXpug2rEDoav82ZUr8aQt2Mkxnjutj27oXJ86gYGVMVE+HrHfZ1vtR5KX0JuGMzOGPRe/gt4BAP33eaVpg==}
+    dependencies:
+      tslib: 2.6.2
+    dev: false
+
+  /@ng-icons/feather-icons@26.1.0:
+    resolution: {integrity: sha512-RcL/b0bt9+YZ6DAassE7vh///1/0HnwTI4AcLyu02p6t/7lqMlNQIgGALyZPMQ0V5G4osLXwlRA0fNZQoV9UIA==}
     dependencies:
       tslib: 2.6.2
     dev: false

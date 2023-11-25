@@ -204,7 +204,7 @@ import { RouterOutlet } from "@angular/router";
 @Component({
   standalone: true,
   imports: [],
-  selector: "frontend-root",
+  selector: "app-root",
   template: `<router-outlet> </router-outlet>`,
   styleUrl: "./app.component.css",
 })

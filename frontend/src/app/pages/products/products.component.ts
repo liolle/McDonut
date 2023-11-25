@@ -3,12 +3,12 @@ import { CommonModule } from "@angular/common";
 import { NavBarComponent } from "../../components/nav-bar/nav-bar.component";
 
 @Component({
-  selector: "frontend-produts",
+  selector: "app-products",
   standalone: true,
   imports: [CommonModule, NavBarComponent],
   templateUrl: "./products.component.html",
   styleUrl: "./products.component.css"
 })
-export class ProdutsComponent {
+export class ProductsComponent {
   activePage: string = "products";
 }

@@ -8,7 +8,7 @@ interface Link {
 }
 
 @Component({
-  selector: "page-navigation",
+  selector: "app-navigation",
   standalone: true,
   imports: [CommonModule],
   templateUrl: "./navigation.component.html",

@@ -9,7 +9,7 @@ import { NgIconComponent, provideIcons } from "@ng-icons/core";
 type StepsVariants = "cart" | "card" | "enjoy";
 
 @Component({
-  selector: "frontend-steps",
+  selector: "app-steps",
   standalone: true,
   imports: [CommonModule, NgIconComponent],
   viewProviders: [

@@ -12,7 +12,7 @@ import {
 import { MenuComponent } from "../dialogs/menu/menu.component";
 
 @Component({
-  selector: "frontend-nav-bar",
+  selector: "app-nav-bar",
   standalone: true,
 
   imports: [
