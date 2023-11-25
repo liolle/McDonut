@@ -1,1 +1,24 @@
-<p>nav-bar works!</p>
+<div class="w-full flex justify-between items-center">
+  <div class="select-none cursor-pointer flex">
+    <D-SVG />
+    <img
+      class="h-8 w-8 object-cover"
+      src="https://d22f1kls6ex9ii.cloudfront.net/donuts/logo2.png"
+      alt=""
+      srcset=""
+    />
+    <N-SVG />
+    <U-SVG />
+    <T-SVG />
+  </div>
+  <page-navigation [activePage]="activePage" />
+
+  <button
+    class="hidden h-fit md:block bg-content text-bgc px-3 py-1 hover:bg-content/75"
+    hlmBtn
+  >
+    <span> Login </span>
+  </button>
+
+  <app-menu class="md:hidden" [activePage]="activePage" />
+</div>

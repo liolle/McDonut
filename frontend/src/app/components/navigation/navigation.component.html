@@ -1,1 +1,8 @@
-<p>navigation works!</p>
+<div class="hidden md:flex items-center gap-4 select-none">
+  <span
+    *ngFor="let link of links"
+    (click)="navigate(link.navigation)"
+    [class]="link.name === activePage ? ' border-b-2 border-content' : ''"
+    >{{ link.name }}</span
+  >
+</div>

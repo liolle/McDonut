@@ -1,1 +1,99 @@
-<p>landing works!</p>
+<div
+  class="h-screen flex-col text-content text-lg bg-gradient-to-b from-bgc to-content flex"
+>
+  <frontend-nav-bar
+    [activePage]="activePage"
+    class="w-full h-14 p-2 flex items-center"
+  />
+
+  <section class="flex-1 flex-col items-center flex justify-center">
+    <main
+      class="hidden flex-col md:flex-row md:flex items-center flex-[1_1_50%] w-full max-w-7xl"
+    >
+      <div class="flex flex-col flex-1 gap-3 w-full items-start p-4">
+        <div
+          class="flex w-full flex-col gap-2 max-w-lg justify-center pl-16 select-none @container"
+        >
+          <p class="text-[2rem] font-bold">Abs are cool.</p>
+          <p
+            class="text-[1.5rem] @[285px]:text-[1.75rem] @[330px]:text-[2.1rem] font-normal"
+          >
+            But have you ever tried donuts ?
+          </p>
+          <p
+            class="text-[12px] @[235px]:text-[15px] @[285px]:text-[18px] font-thin leading-[1.25rem]"
+          >
+            Get your taste buds dancing! Dive into the world of delectable
+            donuts now!
+          </p>
+        </div>
+        <div class="flex w-full justify-center items-center">
+          <button
+            type="button"
+            class="px-2 py-1 bg-accent-2 hover:bg-accent-2/75 text-accent-fg rounded-lg"
+            (click)="navigate('products')"
+            hlmBtn
+          >
+            Order now
+          </button>
+        </div>
+      </div>
+      <div class="flex justify-center items-center flex-1 p-4">
+        <img
+          class="max-h-md max-w-md"
+          src="https://d22f1kls6ex9ii.cloudfront.net/donuts/hero.png"
+          alt=""
+        />
+      </div>
+    </main>
+
+    <main class="flex-col md:hidden flex-1 flex">
+      <div class="flex justify-center items-center flex-1 p-4">
+        <img
+          class="max-h-md max-w-md w-full"
+          src="https://d22f1kls6ex9ii.cloudfront.net/donuts/hero.png"
+          alt=""
+        />
+      </div>
+
+      <div class="flex flex-col flex-1 gap-3 w-full items-center p-4">
+        <div
+          class="flex w-full flex-col gap-2 max-w-lg justify-center select-none @container"
+        >
+          <p class="text-[2rem] font-bold">Abs are cool.</p>
+          <p
+            class="text-[1.5rem] @[285px]:text-[1.75rem] @[330px]:text-[2.1rem] font-normal"
+          >
+            But have you ever tried donuts ?
+          </p>
+          <p
+            class="text-[12px] @[235px]:text-[15px] @[285px]:text-[18px] font-thin leading-[1.25rem]"
+          >
+            Get your taste buds dancing! Dive into the world of delectable
+            donuts now!
+          </p>
+        </div>
+        <div class="flex w-full justify-center items-center">
+          <button
+            type="button"
+            class="px-2 py-1 bg-accent-2 hover:bg-accent-2/75 text-accent-fg rounded-lg"
+            (click)="navigate('products')"
+            hlmBtn
+          >
+            Order now
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <section class="flex h-fit w-full max-w-sm">
+      <div
+        class="flex text-bgc w-full justify-between items-center select-none py-2"
+      >
+        <frontend-steps variant="cart" />
+        <frontend-steps variant="card" />
+        <frontend-steps variant="enjoy" />
+      </div>
+    </section>
+  </section>
+</div>

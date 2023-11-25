@@ -1,13 +1,11 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component } from "@angular/core";
+import { CommonModule } from "@angular/common";
 
 @Component({
-  selector: 'app-not-found',
+  selector: "frontend-page-not-found",
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './not-found.component.html',
-  styleUrl: './not-found.component.css'
+  templateUrl: "./not-found.component.html",
+  styleUrl: "./not-found.component.css"
 })
-export class NotFoundComponent {
-
-}
+export class PageNotFoundComponent {}

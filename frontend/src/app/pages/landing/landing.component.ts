@@ -1,13 +1,23 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component } from "@angular/core";
+import { CommonModule } from "@angular/common";
+
+import { Router } from "@angular/router";
+import { NavBarComponent } from "../../components/nav-bar/nav-bar.component";
+import { StepsComponent } from "../../components/steps/steps.component";
 
 @Component({
-  selector: 'app-landing',
+  selector: "frontend-landing",
   standalone: true,
-  imports: [CommonModule],
-  templateUrl: './landing.component.html',
-  styleUrl: './landing.component.css'
+  imports: [CommonModule, NavBarComponent, StepsComponent],
+  templateUrl: "./landing.component.html",
+  styleUrl: "./landing.component.css"
 })
 export class LandingComponent {
+  activePage: string = "home";
 
+  constructor(private router: Router) {}
+
+  navigate(name: string) {
+    this.router.navigate([name]);
+  }
 }
