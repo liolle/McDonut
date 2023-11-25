@@ -1,8 +1,10 @@
 <div class="hidden select-none items-center gap-4 md:flex">
-  <span
+  <button
     *ngFor="let link of links"
     (click)="navigate(link.navigation)"
+    (keydown.enter)="navigate(link.navigation)"
     [class]="link.name === activePage ? ' border-b-2 border-content' : ''"
-    >{{ link.name }}</span
   >
+    {{ link.name }}
+  </button>
 </div>

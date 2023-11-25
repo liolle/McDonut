@@ -6,7 +6,7 @@ import { NavBarComponent } from "../../components/nav-bar/nav-bar.component";
 import { StepsComponent } from "../../components/steps/steps.component";
 
 @Component({
-  selector: "frontend-landing",
+  selector: "app-page-landing",
   standalone: true,
   imports: [CommonModule, NavBarComponent, StepsComponent],
   templateUrl: "./landing.component.html",

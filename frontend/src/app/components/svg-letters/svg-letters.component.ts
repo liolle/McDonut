@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
 @Component({
-  selector: "D-SVG",
+  selector: "app-d-svg ",
   standalone: true,
   imports: [CommonModule],
   templateUrl: "D.html"
@@ -10,7 +10,7 @@ import { CommonModule } from "@angular/common";
 export class DComponent {}
 
 @Component({
-  selector: "N-SVG",
+  selector: "app-n-svg ",
   standalone: true,
   imports: [CommonModule],
   templateUrl: "./N.html"
@@ -18,7 +18,7 @@ export class DComponent {}
 export class NComponent {}
 
 @Component({
-  selector: "U-SVG",
+  selector: "app-u-svg ",
   standalone: true,
   imports: [CommonModule],
   templateUrl: "U.html"
@@ -26,7 +26,7 @@ export class NComponent {}
 export class UComponent {}
 
 @Component({
-  selector: "T-SVG",
+  selector: "app-t-svg ",
   standalone: true,
   imports: [CommonModule],
   templateUrl: "T.html"

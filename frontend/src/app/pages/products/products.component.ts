@@ -3,7 +3,7 @@ import { CommonModule } from "@angular/common";
 import { NavBarComponent } from "../../components/nav-bar/nav-bar.component";
 
 @Component({
-  selector: "app-products",
+  selector: "app-page-products",
   standalone: true,
   imports: [CommonModule, NavBarComponent],
   templateUrl: "./products.component.html",

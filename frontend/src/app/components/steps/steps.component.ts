@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import {
   featherShoppingCart,
@@ -18,7 +18,7 @@ type StepsVariants = "cart" | "card" | "enjoy";
   templateUrl: "./steps.component.html",
   styleUrl: "./steps.component.css"
 })
-export class StepsComponent {
+export class StepsComponent implements OnInit {
   @Input()
   variant!: StepsVariants;
 
