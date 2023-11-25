@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  Run L2 tests:
+  Run-L2-tests:
     runs-on: ubuntu-latest
     steps:
       - name: Install exact dependencies pnpm ci
