@@ -1,5 +1,5 @@
 <div
-  class="from-bgc to-content text-content flex h-screen flex-col bg-gradient-to-b text-lg"
+  class="flex h-screen flex-col bg-gradient-to-b from-bgc to-content text-lg text-content"
 >
   <app-nav-bar
     [activePage]="activePage"
@@ -12,16 +12,16 @@
     >
       <div class="flex w-full flex-1 flex-col items-start gap-3 p-4">
         <div
-          class="@container flex w-full max-w-lg select-none flex-col justify-center gap-2 pl-16"
+          class="flex w-full max-w-lg select-none flex-col justify-center gap-2 pl-16 @container"
         >
           <p class="text-[2rem] font-bold">Abs are cool.</p>
           <p
-            class="@[285px]:text-[1.75rem] @[330px]:text-[2.1rem] text-[1.5rem] font-normal"
+            class="text-[1.5rem] font-normal @[285px]:text-[1.75rem] @[330px]:text-[2.1rem]"
           >
             But have you ever tried donuts ?
           </p>
           <p
-            class="@[235px]:text-[15px] @[285px]:text-[18px] text-[12px] font-thin leading-[1.25rem]"
+            class="text-[12px] font-thin leading-[1.25rem] @[235px]:text-[15px] @[285px]:text-[18px]"
           >
             Get your taste buds dancing! Dive into the world of delectable
             donuts now!
@@ -30,7 +30,7 @@
         <div class="flex w-full items-center justify-center">
           <button
             type="button"
-            class="text-accent-fg bg-accent-2 hover:bg-accent-2/75 rounded-lg px-2 py-1"
+            class="text-accent-fg rounded-lg bg-accent-2 px-2 py-1 hover:bg-accent-2/75"
             (click)="navigate('products')"
           >
             Order now
@@ -57,16 +57,16 @@
 
       <div class="flex w-full flex-1 flex-col items-center gap-3 p-4">
         <div
-          class="@container flex w-full max-w-lg select-none flex-col justify-center gap-2"
+          class="flex w-full max-w-lg select-none flex-col justify-center gap-2 @container"
         >
           <p class="text-[2rem] font-bold">Abs are cool.</p>
           <p
-            class="@[285px]:text-[1.75rem] @[330px]:text-[2.1rem] text-[1.5rem] font-normal"
+            class="text-[1.5rem] font-normal @[285px]:text-[1.75rem] @[330px]:text-[2.1rem]"
           >
             But have you ever tried donuts ?
           </p>
           <p
-            class="@[235px]:text-[15px] @[285px]:text-[18px] text-[12px] font-thin leading-[1.25rem]"
+            class="text-[12px] font-thin leading-[1.25rem] @[235px]:text-[15px] @[285px]:text-[18px]"
           >
             Get your taste buds dancing! Dive into the world of delectable
             donuts now!
@@ -75,7 +75,7 @@
         <div class="flex w-full items-center justify-center">
           <button
             type="button"
-            class="text-accent-fg bg-accent-2 hover:bg-accent-2/75 rounded-lg px-2 py-1"
+            class="text-accent-fg rounded-lg bg-accent-2 px-2 py-1 hover:bg-accent-2/75"
             (click)="navigate('products')"
           >
             Order now
@@ -86,7 +86,7 @@
 
     <section class="flex h-fit w-full max-w-sm">
       <div
-        class="text-bgc flex w-full select-none items-center justify-between py-2"
+        class="flex w-full select-none items-center justify-between py-2 text-bgc"
       >
         <app-steps variant="cart" />
         <app-steps variant="card" />

@@ -46,19 +46,19 @@ export class MenuComponent {
   constructor(public dialog: MatDialog) {}
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+    const dialogRef = this.dialog.open(MenuContentComponent, {
       data: { activePage: this.activePage },
       panelClass: "menu-dialog"
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
+    dialogRef.afterClosed().subscribe(() => {
       console.log("The dialog was closed");
     });
   }
 }
 
 @Component({
-  selector: "dialog-overview-example-dialog",
+  selector: "app-menu-content-dialog",
   templateUrl: "./menu-body.components.html",
   standalone: true,
   imports: [
@@ -75,7 +75,7 @@ export class MenuComponent {
   ],
   viewProviders: [provideIcons({ radixCross2 })]
 })
-class DialogOverviewExampleDialog {
+class MenuContentComponent {
   links: Link[] = [
     { name: "home", navigation: "/" },
     { name: "products", navigation: "/products" }
@@ -83,7 +83,7 @@ class DialogOverviewExampleDialog {
 
   constructor(
     private router: Router,
-    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
+    public dialogRef: MatDialogRef<MenuContentComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) {}
 
