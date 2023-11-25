@@ -6,8 +6,7 @@ import { NavBarComponent } from "../../components/nav-bar/nav-bar.component";
   selector: "app-page-products",
   standalone: true,
   imports: [CommonModule, NavBarComponent],
-  templateUrl: "./products.component.html",
-  styleUrl: "./products.component.css"
+  templateUrl: "./products.component.html"
 })
 export class ProductsComponent {
   activePage: string = "products";

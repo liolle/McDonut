@@ -9,8 +9,7 @@ import { StepsComponent } from "../../components/steps/steps.component";
   selector: "app-page-landing",
   standalone: true,
   imports: [CommonModule, NavBarComponent, StepsComponent],
-  templateUrl: "./landing.component.html",
-  styleUrl: "./landing.component.css"
+  templateUrl: "./landing.component.html"
 })
 export class LandingComponent {
   activePage: string = "home";

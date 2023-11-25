@@ -37,7 +37,6 @@ import { CommonModule } from "@angular/common";
     NgIconComponent
   ],
   templateUrl: "./menu.component.html",
-  styleUrl: "./menu.component.css",
   viewProviders: [provideIcons({ radixHamburgerMenu })]
 })
 export class MenuComponent {

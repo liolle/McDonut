@@ -11,8 +11,7 @@ interface Link {
   selector: "app-navigation",
   standalone: true,
   imports: [CommonModule],
-  templateUrl: "./navigation.component.html",
-  styleUrl: "./navigation.component.css"
+  templateUrl: "./navigation.component.html"
 })
 export class PageNavigationComponent {
   links: Link[] = [

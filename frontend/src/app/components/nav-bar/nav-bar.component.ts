@@ -27,8 +27,7 @@ import { MatButtonModule } from "@angular/material/button";
     MenuComponent
   ],
   viewProviders: [provideIcons({ radixHamburgerMenu })],
-  templateUrl: "./nav-bar.component.html",
-  styleUrl: "./nav-bar.component.css"
+  templateUrl: "./nav-bar.component.html"
 })
 export class NavBarComponent {
   @Input()

@@ -15,8 +15,7 @@ type StepsVariants = "cart" | "card" | "enjoy";
   viewProviders: [
     provideIcons({ featherShoppingCart, featherCreditCard, featherCoffee })
   ],
-  templateUrl: "./steps.component.html",
-  styleUrl: "./steps.component.css"
+  templateUrl: "./steps.component.html"
 })
 export class StepsComponent implements OnInit {
   @Input()
