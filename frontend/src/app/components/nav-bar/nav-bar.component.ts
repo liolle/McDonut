@@ -10,6 +10,7 @@ import {
   UComponent
 } from "../svg-letters/svg-letters.component";
 import { MenuComponent } from "../dialogs/menu/menu.component";
+import { MatButtonModule } from "@angular/material/button";
 
 @Component({
   selector: "app-nav-bar",
@@ -23,7 +24,6 @@ import { MenuComponent } from "../dialogs/menu/menu.component";
     UComponent,
     PageNavigationComponent,
     NgIconComponent,
-
     MenuComponent
   ],
   viewProviders: [provideIcons({ radixHamburgerMenu })],

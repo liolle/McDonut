@@ -23,15 +23,22 @@ import {
 } from "@angular/material/dialog";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
-import { radixCross2 } from "@ng-icons/radix-icons";
+import { radixCross2, radixHamburgerMenu } from "@ng-icons/radix-icons";
 import { NgIconComponent, provideIcons } from "@ng-icons/core";
 import { CommonModule } from "@angular/common";
 @Component({
   selector: "app-menu",
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, FormsModule, MatButtonModule],
+  imports: [
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    MatButtonModule,
+    NgIconComponent
+  ],
   templateUrl: "./menu.component.html",
-  styleUrl: "./menu.component.css"
+  styleUrl: "./menu.component.css",
+  viewProviders: [provideIcons({ radixHamburgerMenu })]
 })
 export class MenuComponent {
   @Input()
