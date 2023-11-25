@@ -6,5 +6,5 @@ import { ProductsComponent } from "./pages/products/products.component";
 export const appRoutes: Routes = [
   { path: "", component: LandingComponent },
   { path: "products", component: ProductsComponent },
-  { path: "**", component: PageNotFoundComponent } // Wildcard route for a 404 page
+  { path: "**", component: PageNotFoundComponent }
 ];
