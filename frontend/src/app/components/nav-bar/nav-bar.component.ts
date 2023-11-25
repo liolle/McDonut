@@ -3,7 +3,12 @@ import { Component, Input } from "@angular/core";
 import { NgIconComponent, provideIcons } from "@ng-icons/core";
 import { radixHamburgerMenu } from "@ng-icons/radix-icons";
 import { PageNavigationComponent } from "../navigation/navigation.component";
-import { DComponent, NComponent, TComponent, UComponent } from "../svg-letters/svg-letters.component";
+import {
+  DComponent,
+  NComponent,
+  TComponent,
+  UComponent
+} from "../svg-letters/svg-letters.component";
 import { MenuComponent } from "../dialogs/menu/menu.component";
 
 @Component({

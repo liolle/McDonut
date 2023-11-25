@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Component, Input } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { Router } from "@angular/router";
 
 interface Link {
   name: string;
@@ -8,11 +8,11 @@ interface Link {
 }
 
 @Component({
-  selector: 'app-menu',
+  selector: "app-menu",
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './menu.component.html',
-  styleUrl: './menu.component.css'
+  templateUrl: "./menu.component.html",
+  styleUrl: "./menu.component.css"
 })
 export class MenuComponent {
   links: Link[] = [

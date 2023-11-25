@@ -1,8 +1,8 @@
-<div class="hidden md:flex items-center gap-4 select-none">
+<div class="hidden select-none items-center gap-4 md:flex">
   <span
     *ngFor="let link of links"
     (click)="navigate(link.navigation)"
-    [class]="link.name === activePage ? ' border-b-2 border-content' : ''"
+    [class]="link.name === activePage ? ' border-content border-b-2' : ''"
     >{{ link.name }}</span
   >
 </div>
