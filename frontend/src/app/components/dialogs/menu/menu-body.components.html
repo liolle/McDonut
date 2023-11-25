@@ -1,0 +1,28 @@
+<div
+  class="bg-content text-bgc relative flex h-full w-full rounded-xl bg-opacity-90 backdrop-blur-sm"
+  mat-dialog-content
+>
+  <button
+    (click)="onNoClick()"
+    class="border-bgc text-bgc absolute right-4 top-4 flex h-[3rem] w-[3rem] select-none items-center justify-center rounded-full border text-3xl hover:cursor-pointer"
+  >
+    <ng-icon class="text-bgc" size="1.5rem" name="radixCross2"></ng-icon>
+  </button>
+
+  <button
+    class="bg-content text-bgc border-bgc hover:bg-content/75 absolute left-4 top-4 rounded-lg border-2 px-6 py-2"
+  >
+    <span> Login </span>
+  </button>
+
+  <div class="text-bgc flex h-full flex-col items-center gap-4 py-20">
+    <button
+      *ngFor="let link of links"
+      (click)="navigate(link.navigation)"
+      class="hover:text-accent-2 w-[50%] px-3 py-1 text-xl"
+      [class]="link.name === data.activePage ? ' border-2 rounded-lg border-bgc' : ''"
+    >
+      {{ link.name }}
+    </button>
+  </div>
+</div>

@@ -29,3 +29,15 @@
     }
   }
 }
+
+/*Menu dialog*/
+.menu-dialog .mat-mdc-dialog-container {
+  --mdc-dialog-container-color: transparent;
+  height: 80vh !important;
+  width: 80vh !important;
+}
+
+.menu-dialog .mat-mdc-dialog-content {
+  max-height: 80vh !important;
+  padding: 0 !important;
+}
