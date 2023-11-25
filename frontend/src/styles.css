@@ -1,10 +1,31 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-html,
-body {
-  height: 100%;
-}
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+@layer base {
+  :root {
+    --color-background: 250, 240, 230;
+    --color-foreground: 40, 35, 35;
+    --color-content: 40, 35, 35;
+
+    --color-accent-main: 230, 195, 190;
+    --color-accent-alt: 250, 200, 45;
+    --color-accent-like: 239, 72, 72;
+    --color-accent-com: 1, 166, 111;
+    --color-info: 60, 144, 209;
+    --color-error: 232, 89, 89;
+    --color-warning: 237, 153, 29;
+    --color-success: 22, 163, 73;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-background: 40, 35, 35;
+      --color-foreground: 250, 240, 230;
+      --color-content: 250, 240, 230;
+      --color-primary: 252, 252, 252;
+      --color-secondary: 224, 224, 224;
+      --color-primary-foreground: 16, 16, 16;
+      --color-secondary-foreground: 32, 32, 32;
+    }
+  }
 }
