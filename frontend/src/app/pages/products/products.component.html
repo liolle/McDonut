@@ -12,11 +12,11 @@
     </div>
 
     <div
-      class="flex h-full flex-1 items-center justify-center rounded-lg bg-accent-1 @[1250px]:flex-[0_1_80%]"
+      class="flex h-full flex-1 items-center justify-center rounded-lg bg-accent-1 p-6 @[1250px]:flex-[0_1_80%]"
     >
-      <span>
-        <app-donut-card [donut]="donut" />
-      </span>
+      <div class="flex h-full w-full flex-1 flex-wrap justify-between gap-4">
+        <app-donut-card *ngFor="let donut of donuts$ | async" [donut]="donut" />
+      </div>
     </div>
   </section>
 </div>
