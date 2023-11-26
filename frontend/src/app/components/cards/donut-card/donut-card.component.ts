@@ -1,21 +1,25 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import { Component, Input } from "@angular/core";
 import { Donuts } from "../../../class/donut/donut";
 import {
-  FlipBack,
-  FlipElement,
-  FlipFront,
-  FlipTrigger
+  FlipBackDirective,
+  FlipElementDirective,
+  FlipFrontDirective,
+  FlipTriggerDirective
 } from "../../../directives/element-flip/element-flip.directive";
 
 @Component({
   selector: "app-donut-card",
   standalone: true,
-  imports: [CommonModule, FlipElement, FlipFront, FlipBack, FlipTrigger],
-  templateUrl: "./donut-card.component.html",
-  styleUrl: "./donut-card.component.css"
+  imports: [
+    CommonModule,
+    FlipBackDirective,
+    FlipElementDirective,
+    FlipFrontDirective,
+    FlipTriggerDirective
+  ],
+  templateUrl: "./donut-card.component.html"
 })
-export class DonutCardComponent implements OnInit {
-  ngOnInit(): void {}
+export class DonutCardComponent {
   @Input() donut: Donuts;
 }

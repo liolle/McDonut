@@ -10,7 +10,7 @@ import {
   selector: "[appFlipper]",
   standalone: true
 })
-export class FlipElement implements OnInit {
+export class FlipElementDirective implements OnInit {
   rotateY0 = "rotateY(0deg)";
   rotateY180 = "rotateY(180deg)";
 
@@ -50,7 +50,7 @@ export class FlipElement implements OnInit {
   selector: "[appFlipFront]",
   standalone: true
 })
-export class FlipFront implements OnInit {
+export class FlipFrontDirective implements OnInit {
   constructor(
     private renderer: Renderer2,
     private el: ElementRef
@@ -70,7 +70,7 @@ export class FlipFront implements OnInit {
   selector: "[appFlipBack]",
   standalone: true
 })
-export class FlipBack implements OnInit {
+export class FlipBackDirective implements OnInit {
   constructor(
     private renderer: Renderer2,
     private el: ElementRef
@@ -100,8 +100,8 @@ export class FlipBack implements OnInit {
   selector: "[appFlipTrigger]",
   standalone: true
 })
-export class FlipTrigger {
-  constructor(private flipCard: FlipElement) {}
+export class FlipTriggerDirective {
+  constructor(private flipCard: FlipElementDirective) {}
   @HostListener("click")
   onClick() {
     this.flipCard.flip();
