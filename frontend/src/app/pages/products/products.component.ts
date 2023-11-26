@@ -5,7 +5,7 @@ import { SearchBarComponent } from "../../components/search-bar/search-bar/searc
 import { Donuts } from "../../class/donut/donut";
 import { DonutCardComponent } from "../../components/cards/donut-card/donut-card.component";
 import { DonutsService } from "../../services/donuts/donuts.service";
-import { Observable } from "rxjs";
+import { Observable } from "rxjs/internal/Observable";
 
 @Component({
   selector: "app-page-products",
