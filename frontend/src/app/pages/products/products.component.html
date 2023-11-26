@@ -1,10 +1,22 @@
-<div class="bg-bgc text-content flex h-screen flex-col text-lg">
+<div class="flex h-screen flex-col bg-bgc text-lg text-content">
   <app-nav-bar
     [activePage]="activePage"
     class="flex h-14 w-full items-center p-2"
   />
 
-  <section class="flex flex-1 items-center justify-center">
-    <p>Products</p>
+  <section class="flex flex-1 items-center justify-center gap-4 p-4 @container">
+    <div
+      class="hidden h-full flex-1 flex-col rounded-lg bg-accent-1 p-4 @[1250px]:flex"
+    >
+      <app-search-bar (keyword)="processKeyword($event)" />
+    </div>
+
+    <div
+      class="flex h-full flex-1 items-center justify-center rounded-lg bg-accent-1 p-6 @[1250px]:flex-[0_1_80%]"
+    >
+      <div class="flex h-full w-full flex-1 flex-wrap justify-between gap-4">
+        <app-donut-card *ngFor="let donut of donuts$ | async" [donut]="donut" />
+      </div>
+    </div>
   </section>
 </div>

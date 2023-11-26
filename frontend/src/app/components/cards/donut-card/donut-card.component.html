@@ -1,0 +1,48 @@
+<div appFlipper class="relative flex h-80 w-52 flex-col justify-evenly">
+  <div
+    appFlipFront
+    class="absolute flex-1 select-none rounded-lg bg-bgc p-2 text-content shadow-lg"
+  >
+    <div
+      appFlipTrigger
+      class="absolute right-[-0.75rem] top-[-0.75rem] flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-content text-bgc"
+    ></div>
+    <div class="flex items-center justify-center font-bold">
+      <span>{{ donut.name }}</span>
+    </div>
+    <div class="flex-[0_1_50%] p-6">
+      <img src="{{ donut.picture }}" alt="" />
+    </div>
+    <div
+      class="relative top-[-10px] flex items-center justify-center font-semibold"
+    >
+      <span>{{ donut.price }} $</span>
+    </div>
+    <div class="flex items-center justify-center">
+      <button
+        class="text-primary-black rounded bg-accent-2 px-4 py-2 font-bold shadow-md"
+        type="button"
+      >
+        Add
+      </button>
+    </div>
+  </div>
+
+  <div
+    appFlipBack
+    class="absolute flex-1 select-none rounded-lg bg-bgc p-2 shadow-lg"
+  >
+    <div
+      appFlipTrigger
+      class="absolute right-[-0.75rem] top-[-0.75rem] flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-content text-bgc"
+    ></div>
+    <div class="mb-4 flex items-center justify-start font-bold">
+      <span>Ingredients</span>
+    </div>
+    <div class="flex flex-col items-start justify-start gap-2 pl-4">
+      <div *ngFor="let topping of donut.toppings" class="flex gap-2">
+        <span>{{ topping.name }}</span>
+      </div>
+    </div>
+  </div>
+</div>
