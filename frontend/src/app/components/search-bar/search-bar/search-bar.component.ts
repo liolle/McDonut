@@ -6,8 +6,7 @@ import { Subject, debounceTime, distinctUntilChanged } from "rxjs";
   selector: "app-search-bar",
   standalone: true,
   imports: [CommonModule],
-  templateUrl: "./search-bar.component.html",
-  styleUrl: "./search-bar.component.css"
+  templateUrl: "./search-bar.component.html"
 })
 export class SearchBarComponent implements OnInit {
   searchSubject = new Subject<string>();
