@@ -1,0 +1,14 @@
+<button
+  (click)="openDialog()"
+  (keydown.enter)="openDialog()"
+  class="fixed bottom-[10px] right-[10px] flex h-14 w-32 xl:hidden"
+  *ngIf="cart$ | async as cart"
+>
+  <div
+    *ngIf="cart.total > 0"
+    class="flex h-full w-full items-center justify-center gap-2 rounded-md bg-accent-2 p-2"
+  >
+    <span class="font-bold text-pb">{{ cart.total }} $</span>
+    <ng-icon class="text-pb" name="featherShoppingCart"></ng-icon>
+  </div>
+</button>
