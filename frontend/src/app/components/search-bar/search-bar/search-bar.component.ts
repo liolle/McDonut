@@ -1,6 +1,8 @@
 import { CommonModule } from "@angular/common";
 import { Component, EventEmitter, OnInit, Output } from "@angular/core";
-import { Subject, debounceTime, distinctUntilChanged } from "rxjs";
+import { Subject } from "rxjs/internal/Subject";
+import { debounceTime } from "rxjs/internal/operators/debounceTime";
+import { distinctUntilChanged } from "rxjs/internal/operators/distinctUntilChanged";
 
 @Component({
   selector: "app-search-bar",
