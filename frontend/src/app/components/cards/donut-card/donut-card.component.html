@@ -1,12 +1,19 @@
-<div appFlipper class="relative flex h-80 w-52 flex-col justify-evenly">
+<div appFlipper class="relative flex h-80 w-52 flex-col">
   <div
+    *ngIf="donut"
     appFlipFront
-    class="absolute flex-1 select-none rounded-lg bg-bgc p-2 text-content shadow-lg"
+    class="absolute flex flex-1 select-none flex-col justify-between rounded-lg bg-bgc p-4 text-content shadow-lg"
   >
-    <div
+    <button
       appFlipTrigger
       class="absolute right-[-0.75rem] top-[-0.75rem] flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-content text-bgc"
-    ></div>
+    >
+      <ng-icon
+        class="text-bgc"
+        size="1.5rem"
+        name="radixDoubleArrowRight"
+      ></ng-icon>
+    </button>
     <div class="flex items-center justify-center font-bold">
       <span>{{ donut.name }}</span>
     </div>
@@ -18,9 +25,10 @@
     >
       <span>{{ donut.price }} $</span>
     </div>
-    <div class="flex items-center justify-center">
+    <div class="flex w-full items-center justify-center">
       <button
-        class="text-primary-black rounded bg-accent-2 px-4 py-2 font-bold shadow-md"
+        class="w-full rounded bg-accent-2 px-4 font-bold text-pb shadow-md"
+        (click)="pushDonut()"
         type="button"
       >
         Add
@@ -29,18 +37,25 @@
   </div>
 
   <div
+    *ngIf="donut"
     appFlipBack
     class="absolute flex-1 select-none rounded-lg bg-bgc p-2 shadow-lg"
   >
-    <div
+    <button
       appFlipTrigger
       class="absolute right-[-0.75rem] top-[-0.75rem] flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-content text-bgc"
-    ></div>
+    >
+      <ng-icon size="1.5rem" name="radixDoubleArrowLeft"></ng-icon>
+    </button>
     <div class="mb-4 flex items-center justify-start font-bold">
       <span>Ingredients</span>
     </div>
     <div class="flex flex-col items-start justify-start gap-2 pl-4">
-      <div *ngFor="let topping of donut.toppings" class="flex gap-2">
+      <div
+        *ngFor="let topping of donut.toppings"
+        class="flex items-center gap-2"
+      >
+        <ng-icon size="1.5rem" name="radixDot"></ng-icon>
         <span>{{ topping.name }}</span>
       </div>
     </div>

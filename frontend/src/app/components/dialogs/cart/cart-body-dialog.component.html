@@ -1,0 +1,15 @@
+<div
+  class="relative flex h-full w-full rounded-xl bg-accent-1 bg-opacity-90 text-bgc backdrop-blur-sm"
+  mat-dialog-content
+>
+  <button
+    (click)="onNoClick()"
+    class="text-pbµ absolute right-4 top-4 flex h-[3rem] w-[3rem] select-none items-center justify-center rounded-full border border-pb text-3xl hover:cursor-pointer"
+  >
+    <ng-icon class="" size="1.5rem" name="radixCross2"></ng-icon>
+  </button>
+
+  <div class="h-full w-full px-5 py-12 md:px-20">
+    <app-cart class="h-full" />
+  </div>
+</div>
