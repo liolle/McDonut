@@ -1,9 +1,11 @@
-name: Layer1-tests
+name: L1-Test-Front
 
 on:
   push:
     branches:
       - dev
+    path:
+      - "frontend/**"
 
 jobs:
   L1-test:
