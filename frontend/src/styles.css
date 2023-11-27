@@ -7,8 +7,10 @@
     --color-background: 250, 240, 230;
     --color-foreground: 40, 35, 35;
     --color-content: 40, 35, 35;
-
+    --color-white: 250, 240, 230;
+    --color-black: 40, 35, 35;
     --color-accent-main: 230, 195, 190;
+    --color-accent-fg: 40, 35, 35;
     --color-accent-alt: 250, 200, 45;
     --color-accent-like: 239, 72, 72;
     --color-accent-com: 1, 166, 111;

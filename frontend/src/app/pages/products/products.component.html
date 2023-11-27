@@ -1,22 +1,28 @@
-<div class="flex h-screen flex-col bg-bgc text-lg text-content">
+<div class="flex h-screen flex-col overflow-y-auto bg-bgc text-lg text-content">
   <app-nav-bar
     [activePage]="activePage"
-    class="flex h-14 w-full items-center p-2"
+    class="sticky top-0 z-10 flex h-14 w-full items-center p-2 backdrop-blur-lg"
+  />
+  <app-search-bar
+    class="sticky top-[56px] z-10 px-4 xl:hidden"
+    (keyword)="processKeyword($event)"
   />
 
   <section class="flex flex-1 items-center justify-center gap-4 p-4 @container">
     <div
-      class="hidden h-full flex-1 flex-col rounded-lg bg-accent-1 p-4 @[1250px]:flex"
+      class="hidden h-full flex-1 flex-col rounded-lg bg-accent-1 p-4 xl:flex"
     >
       <app-search-bar (keyword)="processKeyword($event)" />
+      <app-cart class="h-full" />
     </div>
 
     <div
-      class="flex h-full flex-1 items-center justify-center rounded-lg bg-accent-1 p-6 @[1250px]:flex-[0_1_80%]"
+      class="flex h-full flex-1 items-center justify-center rounded-lg bg-accent-1 p-6 xl:flex-[0_1_80%]"
     >
-      <div class="flex h-full w-full flex-1 flex-wrap justify-between gap-4">
+      <div class="flex h-full w-full flex-1 flex-wrap justify-evenly gap-4">
         <app-donut-card *ngFor="let donut of donuts$ | async" [donut]="donut" />
       </div>
     </div>
   </section>
+  <app-cart-dialog />
 </div>

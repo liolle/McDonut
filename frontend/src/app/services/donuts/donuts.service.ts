@@ -85,7 +85,7 @@ export const DONUTS: Donuts[] = [
   {
     id: "DI_CHO_03",
     name: "caramel crunch ",
-    toppings: [TOPPINGS[6], TOPPINGS[10], TOPPINGS[10]],
+    toppings: [TOPPINGS[6], TOPPINGS[9], TOPPINGS[10]],
     price: 2.0,
     picture: "https://d22f1kls6ex9ii.cloudfront.net/donuts/donut_3.png"
   },

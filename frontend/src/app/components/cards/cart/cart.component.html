@@ -1,0 +1,60 @@
+<div
+  class="flex h-full flex-1 flex-col justify-between"
+  *ngIf="cart$ | async as cart"
+>
+  <div class="flex flex-col gap-4 text-[1.5rem]">
+    <section
+      class="text-primary-black flex items-center justify-center p-4"
+    ></section>
+    <section
+      class="flex justify-between gap-2"
+      *ngFor="let item of cart.items | keyvalue"
+    >
+      <div class="flex flex-1 items-center gap-2">
+        <div class="font-bold">
+          <span>X{{ item.value.quantity }}</span>
+        </div>
+        <div class="flex w-fit max-w-[40px]">
+          <img src="{{ item.value.donut.picture }}" alt="" />
+        </div>
+        <div class="w-full font-bold @container">
+          <span class="w-full text-[1rem] @[150px]:text-[1.5rem]">{{
+            item.value.donut.name
+          }}</span>
+        </div>
+      </div>
+      <div
+        class="flex flex-col items-center justify-evenly gap-1 text-accent-fg"
+      >
+        <button
+          class="flex h-8 w-8 items-center justify-center rounded bg-pb text-pw shadow"
+          (click)="pushDonut(item.value.donut)"
+        >
+          <ng-icon class="" name="radixPlus"></ng-icon>
+        </button>
+        <button
+          class="flex h-8 w-8 items-center justify-center rounded bg-pb text-pw shadow"
+          (click)="removeFromCart(item.value.donut)"
+        >
+          <ng-icon class="" name="radixMinus"></ng-icon>
+        </button>
+      </div>
+    </section>
+  </div>
+  <section class="flex items-center justify-between p-2">
+    <div
+      *ngIf="cart$ | async as cart"
+      class="flex w-full flex-col items-center justify-center gap-6 font-bold"
+    >
+      <span class="text-[2rem]" *ngIf="cart.total !== 0"
+        >{{ cart.total }} $</span
+      >
+      <button
+        [disabled]="cart.items.size < 1"
+        class="w-full rounded-lg bg-accent-2 py-2 font-bold text-accent-fg shadow-md"
+      >
+        Checkout
+      </button>
+    </div>
+  </section>
+</div>
