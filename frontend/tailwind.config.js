@@ -7,10 +7,14 @@ module.exports = {
         bgc: "rgba(var(--color-background), <alpha-value>)",
         fgc: "rgba(var(--color-foreground), <alpha-value>)",
         content: "rgba(var(--color-content), <alpha-value>)",
+        pw: "rgba(var(--color-white), <alpha-value>)",
+        pb: "rgba(var(--color-black), <alpha-value>)",
 
         accent: {
           1: "rgba(var(--color-accent-main), <alpha-value>)",
           2: "rgba(var(--color-accent-alt), <alpha-value>)",
+          main: "rgba(var(--color-accent-main), <alpha-value>)",
+          fg: "rgba(var(--color-accent-fg), <alpha-value>)",
           like: "rgba(var(--color-accent-like), <alpha-value>)",
           Com: "rgba(var(--color-accent-com), <alpha-value>)"
         },
