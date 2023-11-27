@@ -1,4 +1,4 @@
-name: Vercel Production Deployment
+name: Vercel-Prod-Front
 
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
@@ -10,6 +10,8 @@ on:
       - opened
     branches:
       - main
+    path:
+      - "frontend/**"
 
 jobs:
   Deploy-Prod:
