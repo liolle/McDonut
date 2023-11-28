@@ -162,6 +162,7 @@ export const DONUTS: Donuts[] = [
 ]
 
 import Route from '@ioc:Adonis/Core/Route'
+// import Database from '@ioc:Adonis/Lucid/Database'
 
 Route.get('/', async () => {
   return { hello: 'world' }
@@ -169,4 +170,5 @@ Route.get('/', async () => {
 
 Route.get('/donuts', async () => {
   return { donuts: DONUTS }
+  // return Database.from('posts').select('*')
 })
