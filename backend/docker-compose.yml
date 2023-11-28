@@ -1,0 +1,20 @@
+version: '3'
+services:
+  db:
+    image: postgres:15
+    container_name: mcDonutDb
+    restart: always
+
+    volumes:
+      - psql:/var/lib/postgresql/data
+
+    ports:
+      - 5432:5432
+
+    environment:
+      - POSTGRES_DB=mcDonut
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+
+volumes:
+  psql:
