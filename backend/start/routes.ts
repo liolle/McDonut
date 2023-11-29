@@ -19,17 +19,17 @@
 */
 
 export class Donuts {
-  id: string
-  name: string
-  price: number
-  toppings: Toppings[]
-  picture: string
+  public id: string
+  public name: string
+  public price: number
+  public toppings: Toppings[]
+  public picture: string
 }
 
 export class Toppings {
-  id: string
-  name: string
-  price: number
+  public id: string
+  public name: string
+  public price: number
 }
 
 const TOPPINGS: Toppings[] = [
@@ -162,13 +162,47 @@ export const DONUTS: Donuts[] = [
 ]
 
 import Route from '@ioc:Adonis/Core/Route'
+import auth from '../config/auth'
 // import Database from '@ioc:Adonis/Lucid/Database'
 
-Route.get('/', async () => {
-  return { hello: 'world' }
-})
+Route.get('health', ({ response }) => response.noContent())
 
 Route.get('/donuts', async () => {
   return { donuts: DONUTS }
   // return Database.from('posts').select('*')
 })
+
+// Route.get('login', async ({ auth, request, response }) => {
+//   try {
+//     const token = await auth.use('api').attempt('test', 'test')
+//     return token
+//   } catch {
+//     return response.unauthorized('Invalid credentials')
+//   }
+//   // return Database.from('posts').select('*')
+// })
+
+// Route.get('register', async ({ auth, request, response }) => {
+//   try {
+//     const token = await auth.use('api').attempt('test', 'test')
+//     return token
+//   } catch {
+//     return response.unauthorized('Invalid credentials')
+//   }
+//   // return Database.from('posts').select('*')
+// })
+
+Route.group(() => {
+  Route.get('/', async ({ request, response, auth }) => {
+    try {
+      await auth.authenticate()
+      if (!auth.isAuthenticated) return false
+      return auth.user
+    } catch (error) {
+      return error
+    }
+  })
+  Route.post('/register', 'AuthController.register')
+  Route.post('/login', 'AuthController.login')
+  Route.get('/logout', 'AuthController.logout')
+}).prefix('api')

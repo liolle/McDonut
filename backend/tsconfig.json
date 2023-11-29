@@ -7,6 +7,7 @@
     "rootDir": "./",
     "sourceMap": true,
     "paths": {
+      "@/*": ["./*"],
       "App/*": ["./app/*"],
       "Config/*": ["./config/*"],
       "Contracts/*": ["./contracts/*"],
@@ -17,7 +18,9 @@
       "@adonisjs/repl",
       "@japa/preset-adonis/build/adonis-typings",
       "@adonisjs/lucid",
-      "@adonisjs/auth"
+      "@adonisjs/auth",
+      "@adonisjs/session",
+      "@adonisjs/redis"
     ]
   }
 }
