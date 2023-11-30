@@ -1,9 +1,6 @@
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Donuts } from "../../class/donut/donut";
-import { Toppings } from "../../class/toppings/toppings";
-import { of } from "rxjs/internal/observable/of";
-import { Observable } from "rxjs/internal/Observable";
-import { HttpClient } from "@angular/common/http";
 
 interface SelectInterface {
   page: number;

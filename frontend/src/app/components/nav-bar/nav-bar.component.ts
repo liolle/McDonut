@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { NgIconComponent, provideIcons } from "@ng-icons/core";
 import { radixHamburgerMenu } from "@ng-icons/radix-icons";
 import { MenuComponent } from "../dialogs/menu/menu.component";
@@ -28,8 +28,7 @@ import {
   viewProviders: [provideIcons({ radixHamburgerMenu })],
   templateUrl: "./nav-bar.component.html"
 })
-export class NavBarComponent implements OnInit {
-  ngOnInit(): void {}
+export class NavBarComponent {
   @Input()
   activePage!: string;
 

@@ -24,8 +24,8 @@ $frontend-theme: mat.define-light-theme(
     color: (
       primary: $frontend-primary,
       accent: $frontend-accent,
-      warn: $frontend-warn,
-    ),
+      warn: $frontend-warn
+    )
   )
 );
 
