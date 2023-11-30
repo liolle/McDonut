@@ -19,7 +19,7 @@ export class DonutsService {
 
   select({ page, limit, keyword }: SelectInterface) {
     return this.httpClient.get<Donuts[]>(
-      `http://localhost:3333/donuts?limit=${limit}&page=${page}${
+      `/api/donuts?limit=${limit}&page=${page}${
         keyword ? "&keyword=" + keyword : ""
       }`
     );
