@@ -1,4 +1,8 @@
-import { ApplicationConfig, isDevMode } from "@angular/core";
+import {
+  ApplicationConfig,
+  importProvidersFrom,
+  isDevMode
+} from "@angular/core";
 import { provideRouter } from "@angular/router";
 
 import { appRoutes } from "./app.routes";
@@ -7,9 +11,16 @@ import { provideAnimations } from "@angular/platform-browser/animations";
 import { provideStore } from "@ngrx/store";
 import { provideStoreDevtools } from "@ngrx/store-devtools";
 import { cartReducer } from "./shared/cart/cart.reducer";
+import {
+  HttpClientModule,
+  provideHttpClient,
+  withFetch
+} from "@angular/common/http";
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    importProvidersFrom(HttpClientModule),
+    provideHttpClient(withFetch()),
     provideRouter(appRoutes),
     provideClientHydration(),
     provideAnimations(),

@@ -46,8 +46,8 @@ export default class AuthController {
     })
   }
 
-  public async googleRedirect({ ally }: HttpContextContract) {
-    return ally.use('google').redirect()
+  public async googleRedirect({ request, ally }: HttpContextContract) {
+    return ally.use('google').redirect((redirectRequest) => {})
   }
 
   public async googleCallback({ ally, auth, response }: HttpContextContract) {
@@ -109,8 +109,7 @@ export default class AuthController {
       })
 
       response.cookie('sessionId', token)
-
-      return response
+      response.redirect('http://localhost:4200/products')
     } catch (error) {
       return error
     }

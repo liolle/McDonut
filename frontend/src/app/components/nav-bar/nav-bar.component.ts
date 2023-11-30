@@ -31,4 +31,11 @@ import {
 export class NavBarComponent {
   @Input()
   activePage!: string;
+
+  googleLogin() {
+    window.open(
+      "http://localhost:4200/api/oauth/google/redirect?returnTo=http://localhost:4200/products",
+      "_self"
+    );
+  }
 }

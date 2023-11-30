@@ -33,20 +33,35 @@ export class ProductsComponent implements OnInit {
   activePage: string = "products";
   donuts$: Observable<Donuts[]>;
 
+  limit = 9;
+  page = 0;
+
   private readonly store: Store<{ cart: Cart }> = inject(Store);
   cart$: Observable<Cart>;
 
   constructor(private donutService: DonutsService) {}
   ngOnInit(): void {
-    this.donuts$ = this.donutService.get(9);
+    this.donuts$ = this.donutService.select({
+      limit: this.limit,
+      page: this.page,
+      keyword: ""
+    });
     this.cart$ = this.store.select(selectCart);
   }
 
   processKeyword(keyword: string) {
     if (keyword.length < 1) {
-      this.donuts$ = this.donutService.get(9);
+      this.donuts$ = this.donutService.select({
+        limit: this.limit,
+        page: this.page,
+        keyword: ""
+      });
       return;
     }
-    this.donuts$ = this.donutService.getByTerm(keyword);
+    this.donuts$ = this.donutService.select({
+      limit: this.limit,
+      page: this.page,
+      keyword: keyword
+    });
   }
 }

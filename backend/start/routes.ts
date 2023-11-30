@@ -23,6 +23,11 @@ import Route from '@ioc:Adonis/Core/Route'
 // import Database from '@ioc:Adonis/Lucid/Database'
 
 Route.group(() => {
+  Route.get('/', (response) => {
+    return {
+      hello: 'world',
+    }
+  })
   Route.get('health', ({ response }) => response.noContent())
 
   Route.group(() => {
