@@ -5,7 +5,7 @@ export default class extends BaseSchema {
 
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
-      table.uuid('id').primary().defaultTo(this.db.rawQuery('uuid_generate_v4()').knexQuery)
+      table.string('id').primary()
       table.string('name', 255).notNullable().unique()
       table.double('price', 2).notNullable()
       table.string('picture').notNullable()

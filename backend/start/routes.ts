@@ -18,191 +18,45 @@
 |
 */
 
-export class Donuts {
-  public id: string
-  public name: string
-  public price: number
-  public toppings: Toppings[]
-  public picture: string
-}
-
-export class Toppings {
-  public id: string
-  public name: string
-  public price: number
-}
-
-const TOPPINGS: Toppings[] = [
-  {
-    id: 'T_topping1_00', //0
-    name: 'chocolate sprinkle',
-    price: 0.25,
-  },
-  {
-    id: 'T_CHO_00', //1
-    name: 'chocolate filling',
-    price: 0.25,
-  },
-  {
-    id: 'T_CHO_01', //2
-    name: 'chocolate icing',
-    price: 0.25,
-  },
-  {
-    id: 'T_CHO_02', //3
-    name: 'chocolate drizzle',
-    price: 0.25,
-  },
-  {
-    id: 'T_CHO_03', //4
-    name: 'dark chocolate sprinkle',
-    price: 0.25,
-  },
-  {
-    id: 'T_CHO_04', //5
-    name: 'dark chocolate icing',
-    price: 0.25,
-  },
-  {
-    id: 'T_VAN_00', //6
-    name: 'vanilla icing',
-    price: 0.25,
-  },
-  {
-    id: 'T_VAN_01', //7
-    name: 'vanilla filling',
-    price: 0.25,
-  },
-  {
-    id: 'T_VAN_02', //8
-    name: 'vanilla drizzle',
-    price: 0.25,
-  },
-  {
-    id: 'T_CAR_00', //9
-    name: 'caramel drizzle',
-    price: 0.25,
-  },
-  {
-    id: 'T_NUT_00', //10
-    name: 'nut',
-    price: 0.25,
-  },
-  {
-    id: 'T_NUT_01', //11
-    name: 'coconut sprinkle',
-    price: 0.25,
-  },
-]
-
-export const DONUTS: Donuts[] = [
-  {
-    id: 'DI_CHO_01',
-    name: 'choco delight',
-    toppings: [TOPPINGS[0], TOPPINGS[2]],
-    price: 1.75,
-    picture: 'https://d22f1kls6ex9ii.cloudfront.net/donuts/donut_1.png',
-  },
-  {
-    id: 'DI_CHO_02',
-    name: 'dual swirl',
-    toppings: [TOPPINGS[8], TOPPINGS[3]],
-    price: 1.5,
-    picture: 'https://d22f1kls6ex9ii.cloudfront.net/donuts/donut_2.png',
-  },
-  {
-    id: 'DI_CHO_03',
-    name: 'caramel crunch ',
-    toppings: [TOPPINGS[6], TOPPINGS[9], TOPPINGS[10]],
-    price: 2.0,
-    picture: 'https://d22f1kls6ex9ii.cloudfront.net/donuts/donut_3.png',
-  },
-  {
-    id: 'DI_CHO_04',
-    name: 'dark lava',
-    toppings: [TOPPINGS[4], TOPPINGS[5]],
-    price: 1.75,
-    picture: 'https://d22f1kls6ex9ii.cloudfront.net/donuts/donut_4.png',
-  },
-  {
-    id: 'DI_VAN_01',
-    name: 'choco drizzle',
-    toppings: [TOPPINGS[3], TOPPINGS[6]],
-    price: 1.5,
-    picture: 'https://d22f1kls6ex9ii.cloudfront.net/donuts/donut_5.png',
-  },
-  {
-    id: 'DI_CHO_05',
-    name: 'choco heaven',
-    toppings: [TOPPINGS[0], TOPPINGS[1], TOPPINGS[2]],
-    price: 1.5,
-    picture: 'https://d22f1kls6ex9ii.cloudfront.net/donuts/donut_6.png',
-  },
-  {
-    id: 'DI_VAN_02',
-    name: 'choco drift',
-    toppings: [TOPPINGS[6], TOPPINGS[0], TOPPINGS[3]],
-    price: 2.0,
-    picture: 'https://d22f1kls6ex9ii.cloudfront.net/donuts/donut_7.png',
-  },
-  {
-    id: 'DI_CHO_06',
-    name: 'dark elegance',
-    toppings: [TOPPINGS[4], TOPPINGS[2], TOPPINGS[7]],
-    price: 1.75,
-    picture: 'https://d22f1kls6ex9ii.cloudfront.net/donuts/donut_8.png',
-  },
-  {
-    id: 'DI_CHO_07',
-    name: 'vanilla coconut',
-    toppings: [TOPPINGS[11], TOPPINGS[7], TOPPINGS[6]],
-    price: 2.25,
-    picture: 'https://d22f1kls6ex9ii.cloudfront.net/donuts/donut_9.png',
-  },
-]
-
+import { Router } from '@adonisjs/core/build/standalone'
 import Route from '@ioc:Adonis/Core/Route'
-import auth from '../config/auth'
 // import Database from '@ioc:Adonis/Lucid/Database'
 
-Route.get('health', ({ response }) => response.noContent())
-
-Route.get('/donuts', async () => {
-  return { donuts: DONUTS }
-  // return Database.from('posts').select('*')
-})
-
-// Route.get('login', async ({ auth, request, response }) => {
-//   try {
-//     const token = await auth.use('api').attempt('test', 'test')
-//     return token
-//   } catch {
-//     return response.unauthorized('Invalid credentials')
-//   }
-//   // return Database.from('posts').select('*')
-// })
-
-// Route.get('register', async ({ auth, request, response }) => {
-//   try {
-//     const token = await auth.use('api').attempt('test', 'test')
-//     return token
-//   } catch {
-//     return response.unauthorized('Invalid credentials')
-//   }
-//   // return Database.from('posts').select('*')
-// })
-
 Route.group(() => {
-  Route.get('/', async ({ request, response, auth }) => {
-    try {
-      await auth.authenticate()
-      if (!auth.isAuthenticated) return false
-      return auth.user
-    } catch (error) {
-      return error
-    }
+  Route.get('health', ({ response }) => response.noContent())
+
+  Route.group(() => {
+    Route.get('/', 'DonutsController.get')
+    Route.post('/', 'DonutsController.post')
+    Route.put('/', 'DonutsController.put')
+
+    Route.group(() => {
+      Route.put(
+        '/historic',
+        ({ response }) => 'Should register the purchase taking the details of a cart'
+      )
+    }).middleware('auth')
+  }).prefix('donuts')
+
+  //Needs Auth
+  Route.group(() => {
+    Route.get('/me', 'AuthController.me')
+  }).middleware('auth')
+
+  // OAUTH2
+  Route.group(() => {
+    Route.group(() => {
+      Route.group(() => {
+        Route.get('/redirect', 'AuthController.googleRedirect')
+        Route.get('/callback', 'AuthController.googleCallback')
+      }).prefix('google')
+    }).prefix('oauth')
   })
-  Route.post('/register', 'AuthController.register')
-  Route.post('/login', 'AuthController.login')
-  Route.get('/logout', 'AuthController.logout')
-}).prefix('api')
+
+  // OAT
+  Route.group(() => {
+    Route.post('/register', 'AuthController.register')
+    Route.post('/login', 'AuthController.login')
+    Route.get('/logout', 'AuthController.logout')
+  })
+}).middleware('authCookie')
