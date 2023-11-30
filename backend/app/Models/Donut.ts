@@ -1,15 +1,18 @@
-import { DateTime } from 'luxon'
 import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { DateTime } from 'luxon'
 
 export default class Donut extends BaseModel {
   @column({ isPrimary: true })
-  public id: number
+  public id: string
 
   @column()
   public name: string
 
   @column()
   public price: number
+
+  @column()
+  public picture: string
 
   @column()
   public available: boolean
