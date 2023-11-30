@@ -1,5 +1,5 @@
 export class Toppings {
-  id: string
-  name: string
-  price: number
+  public id: string
+  public name: string
+  public price: number
 }

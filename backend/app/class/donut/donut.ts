@@ -1,19 +1,19 @@
 import { Toppings } from '../toppings/toppings'
 
 export class Donuts {
-  id: string
-  name: string
-  price: number
-  toppings: Toppings[]
-  picture: string
+  public id: string
+  public name: string
+  public price: number
+  public toppings: Toppings[]
+  public picture: string
 }
 
 export class RawDonuts {
-  donut_id: string
-  topping_id: string
-  donut_name: string
-  topping_name: string
-  donut_price: number
-  topping_price: number
-  picture: string
+  public donut_id: string
+  public topping_id: string
+  public donut_name: string
+  public topping_name: string
+  public donut_price: number
+  public topping_price: number
+  public picture: string
 }
