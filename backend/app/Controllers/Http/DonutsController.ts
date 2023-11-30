@@ -1,5 +1,7 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
+import { DonutService } from '../../services/DonutService'
+
 export default class DonutsController {
   public async get({ request, response }: HttpContextContract) {
     console.log()
@@ -9,9 +11,7 @@ export default class DonutsController {
     if (isNaN(limit)) return response.badRequest(`Incorrect value ?limit=${limit} donuts`)
     if (isNaN(page)) return response.badRequest(`Incorrect value ?page=${limit} donuts`)
 
-    return `Should return page ${page} with ${limit} donuts or less ${
-      keyword ? `matching the keyword '${keyword}'` : ''
-    }`
+    return DonutService.select({ page, limit, keyword })
   }
   public async post({}: HttpContextContract) {
     return 'Should Add new donut'

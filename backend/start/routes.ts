@@ -27,8 +27,8 @@ Route.group(() => {
 
   Route.group(() => {
     Route.get('/', 'DonutsController.get')
-    Route.post('/', 'DonutsController.post')
-    Route.put('/', 'DonutsController.put')
+    Route.post('/', () => 'TODO')
+    Route.put('/', () => 'TODO')
 
     Route.group(() => {
       Route.put(
