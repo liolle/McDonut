@@ -91,24 +91,29 @@ export default class AuthController {
      * Find the user by email or create
      * a new one
      */
-    const user = await User.firstOrCreate(
-      {
-        email: googleUser.email,
-      },
-      {
-        email: googleUser.email,
-        provider: 'google',
-        access_token: googleUser.token.token,
-      }
-    )
 
-    const token = await auth.use('api').generate(user, {
-      expiresIn: '90 mins',
-    })
+    try {
+      const user = await User.firstOrCreate(
+        {
+          email: googleUser.email,
+        },
+        {
+          email: googleUser.email,
+          provider: 'google',
+          access_token: googleUser.token.token,
+        }
+      )
 
-    response.cookie('sessionId', token)
+      const token = await auth.use('api').generate(user, {
+        expiresIn: '90 mins',
+      })
 
-    return response
+      response.cookie('sessionId', token)
+
+      return response
+    } catch (error) {
+      return error
+    }
   }
 
   public async me({ auth }: HttpContextContract) {
