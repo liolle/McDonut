@@ -1,5 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import User from '../../Models/User'
+import Env from '@ioc:Adonis/Core/Env'
 
 export default class AuthController {
   public async register({ request, response }: HttpContextContract) {
@@ -24,18 +25,14 @@ export default class AuthController {
     if (!email || !password)
       return response.unauthorized({ message: 'password or email incorrect' })
 
-    try {
-      const token = await auth.attempt(email, password, {
-        expiresIn: '90 mins',
-      })
-      response.cookie('sessionId', token.token)
+    const token = await auth.attempt(email, password, {
+      expiresIn: '90 mins',
+    })
+    response.cookie('sessionId', token.token)
 
-      return response.json({
-        token: token.token,
-      })
-    } catch (error) {
-      return response.unauthorized({ message: 'password or email incorrect' })
-    }
+    return response.json({
+      token: token.token,
+    })
   }
 
   public async logout({ auth, response }: HttpContextContract) {
@@ -46,39 +43,26 @@ export default class AuthController {
     })
   }
 
-  public async googleRedirect({ request, ally }: HttpContextContract) {
-    return ally.use('google').redirect((redirectRequest) => {})
+  public async googleRedirect({ ally }: HttpContextContract) {
+    return ally.use('google').redirect()
   }
 
   public async googleCallback({ ally, auth, response }: HttpContextContract) {
     const google = ally.use('google')
 
-    /**
-     * User has explicitly denied the login request
-     */
     if (google.accessDenied()) {
       return 'Access was denied'
     }
 
-    /**
-     * Unable to verify the CSRF state
-     */
     if (google.stateMisMatch()) {
       return 'Request expired. Retry again'
     }
 
-    /**
-     * There was an unknown error during the redirect
-     */
     if (google.hasError()) {
       console.log(google)
 
       return google.getError()
     }
-
-    /**
-     * Finally, access the user
-     */
 
     const googleUser = await google.user()
 
@@ -87,32 +71,24 @@ export default class AuthController {
         status: false,
         message: 'Something went wrong.',
       })
-    /**
-     * Find the user by email or create
-     * a new one
-     */
 
-    try {
-      const user = await User.firstOrCreate(
-        {
-          email: googleUser.email,
-        },
-        {
-          email: googleUser.email,
-          provider: 'google',
-          access_token: googleUser.token.token,
-        }
-      )
+    const user = await User.firstOrCreate(
+      {
+        email: googleUser.email,
+      },
+      {
+        email: googleUser.email,
+        provider: 'google',
+        access_token: googleUser.token.token,
+      }
+    )
 
-      const token = await auth.use('api').generate(user, {
-        expiresIn: '90 mins',
-      })
+    const token = await auth.use('api').generate(user, {
+      expiresIn: '90 mins',
+    })
 
-      response.cookie('sessionId', token)
-      response.redirect('http://localhost:4200/products')
-    } catch (error) {
-      return error
-    }
+    response.cookie('sessionId', token)
+    response.redirect(Env.get('RETURN_TO'))
   }
 
   public async me({ auth }: HttpContextContract) {
