@@ -17,7 +17,7 @@ export class SearchBarComponent implements OnInit {
 
   ngOnInit(): void {
     this.searchSubject
-      .pipe(debounceTime(300), distinctUntilChanged())
+      .pipe(debounceTime(500), distinctUntilChanged())
       .subscribe((value) => {
         this.keyword.emit(value);
       });

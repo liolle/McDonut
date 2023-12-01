@@ -11,6 +11,8 @@ import {
   UComponent
 } from "../svg-letters/svg-letters.component";
 
+import { environment } from "../../../environments/environment";
+
 @Component({
   selector: "app-nav-bar",
   standalone: true,
@@ -31,4 +33,8 @@ import {
 export class NavBarComponent {
   @Input()
   activePage!: string;
+
+  googleLogin() {
+    window.open("/api/oauth/google/redirect", "_self");
+  }
 }

@@ -1,0 +1,31 @@
+version: '3'
+services:
+    db:
+    image: postgres:15
+    container_name: mcDonutDb
+    restart: always
+    volumes:
+      - psql:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=mcDonut
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+
+  cache:
+    image: redis:6.2-alpine
+    container_name: mcDonutRedis
+    restart: always
+    command: redis-server --requirepass mcdonut
+    volumes:
+      - redis:/var/lib/redis/data
+    ports:
+      - 6379:6379
+    environment:
+      - REDIS_REPLICATION_MODE=master
+      - REDIS_PASSWORD=mcdonut
+
+volumes:
+  psql:
+  redis:
