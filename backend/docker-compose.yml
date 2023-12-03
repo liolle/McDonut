@@ -1,6 +1,6 @@
 version: '3'
 services:
-    db:
+  db:
     image: postgres:15
     container_name: mcDonutDb
     restart: always
