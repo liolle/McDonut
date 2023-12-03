@@ -29,4 +29,5 @@ WORKDIR /app
 COPY --from=production-deps /app/node_modules /app/node_modules
 COPY --from=build /app/build /app
 EXPOSE 3333
-CMD ["node", "./server.js"]
+COPY start.sh /app/start.sh
+CMD ["/bin/sh", "/app/start.sh"]
