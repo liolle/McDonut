@@ -37,6 +37,6 @@ export class NavBarComponent {
   private apiUrl = environment.apiUrl;
 
   googleLogin() {
-    window.open(`${this.apiUrl}/api/oauth/google/redirect`, "_self");
+    window.open(`${this.apiUrl}/oauth/google/redirect`, "_self");
   }
 }
