@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: "http://locahost:3333"
+  apiUrl: "http://mcdonut.api.vertix.tech"
 };
