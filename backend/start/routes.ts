@@ -39,6 +39,7 @@ Route.group(() => {
         '/historic',
         ({ response }) => 'Should register the purchase taking the details of a cart'
       )
+      Route.get('/historic', ({ response }) => 'Should show')
     }).middleware('auth')
   }).prefix('donuts')
 

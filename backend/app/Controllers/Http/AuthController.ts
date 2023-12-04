@@ -92,6 +92,9 @@ export default class AuthController {
   }
 
   public async me({ auth }: HttpContextContract) {
+    if (!auth.user) {
+      return 'Not connected'
+    }
     const { email, role, createdAt } = auth.user
 
     return {
