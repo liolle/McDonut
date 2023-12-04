@@ -1,7 +1,7 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Donuts } from "../../class/donut/donut";
 import { environment } from "../../../environments/environment";
+import { Donuts } from "../../class/donut/donut";
 interface SelectInterface {
   page: number;
   limit: number;
@@ -22,9 +22,7 @@ export class DonutsService {
     };
 
     return this.httpClient.get<Donuts[]>(
-      `${this.apiUrl}${
-        this.apiUrl == "" ? "/api" : ""
-      }/donuts?limit=${limit}&page=${page}${
+      `${this.apiUrl}/donuts?limit=${limit}&page=${page}${
         keyword ? "&keyword=" + keyword : ""
       }`,
       { headers: headers }
