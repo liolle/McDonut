@@ -9,7 +9,7 @@ export default class AuthMid {
       return
     }
     if (token) {
-      request.headers().authorization = `Bearer ${token}`
+      request.headers().authorization = `Bearer ${token.token}`
     }
 
     await next()
