@@ -34,7 +34,9 @@ export class NavBarComponent {
   @Input()
   activePage!: string;
 
+  private apiUrl = environment.apiUrl;
+
   googleLogin() {
-    window.open("/api/oauth/google/redirect", "_self");
+    window.open(`${this.apiUrl}/api/oauth/google/redirect`, "_self");
   }
 }
