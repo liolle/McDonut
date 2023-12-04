@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: "http://mcdonut-api.vertix.tech"
+  apiUrl: "https://mcdonut-api.vertix.tech"
 };
