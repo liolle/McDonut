@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "http://mcdonut.api.vertix.tech",
+    "target": "https://mcdonut-api.vertix.tech",
     "secure": false,
     "pathRewrite": {
       "^/api": ""
