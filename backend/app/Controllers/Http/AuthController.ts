@@ -44,11 +44,11 @@ export default class AuthController {
   }
 
   public async googleRedirect({ ally }: HttpContextContract) {
-    return ally.use('google').redirect()
+    return ally.use('google').stateless().redirect()
   }
 
   public async googleCallback({ ally, auth, response }: HttpContextContract) {
-    const google = ally.use('google')
+    const google = ally.use('google').stateless()
 
     if (google.accessDenied()) {
       return 'Access was denied'
