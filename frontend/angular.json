@@ -64,16 +64,14 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "buildTarget": "proxy-test:build",
-            "proxyConfig": "src/proxy.conf.json"
+            "buildTarget": "proxy-test:build"
           },
           "configurations": {
             "production": {
               "buildTarget": "frontend:build:production"
             },
             "development": {
-              "buildTarget": "frontend:build:development",
-              "proxyConfig": "src/proxy.conf.json"
+              "buildTarget": "frontend:build:development"
             }
           },
           "defaultConfiguration": "development"
