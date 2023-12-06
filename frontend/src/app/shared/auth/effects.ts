@@ -1,9 +1,10 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 
-import { catchError, map, of, switchMap } from "rxjs";
+import { catchError, map, of, switchMap, tap } from "rxjs";
 import { AuthService } from "../../services/auth/auth.service";
 import { AuthActions } from "../actions";
+import { ApiError } from "../../interfaces/api";
 
 @Injectable()
 export class AuthEffects {
@@ -18,7 +19,9 @@ export class AuthEffects {
       switchMap(() => {
         return this.authService.me().pipe(
           map((profile) => AuthActions.loadProfileSuccess({ profile })),
-          catchError((error) => of(AuthActions.loadProfileFailure({ error })))
+          catchError((error: { error: { errors: ApiError[] } }) =>
+            of(AuthActions.loadProfileFailure({ error }))
+          )
         );
       })
     )

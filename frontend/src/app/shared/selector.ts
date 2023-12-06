@@ -1,13 +1,13 @@
 import { createSelector } from "@ngrx/store";
 import { Cart } from "../interfaces/cart";
-import { User } from "./auth/reducer";
+import { UserS } from "./auth/reducer";
 
 export interface CartState {
   cart: Cart;
 }
 
 export interface UserState {
-  user: User;
+  user: UserS;
 }
 
 export const selectCart = createSelector(

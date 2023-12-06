@@ -1,15 +1,6 @@
 import { createAction, props } from "@ngrx/store";
 import { Donuts } from "../class/donut/donut";
-
-interface ApiError {
-  message: string;
-}
-
-interface UserProfile {
-  email: string;
-  role: "user" | "admin";
-  createdAt: Date;
-}
+import { ApiError, UserProfile } from "../interfaces/api";
 
 export const AuthActions = {
   login: createAction("Login"),
@@ -21,7 +12,7 @@ export const AuthActions = {
   ),
   loadProfileFailure: createAction(
     "Unauthorized",
-    props<{ error: { errors: ApiError[] } }>()
+    props<{ error: { error: { errors: ApiError[] } } }>()
   )
 };
 
