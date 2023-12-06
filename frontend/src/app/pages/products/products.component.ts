@@ -12,7 +12,7 @@ import { SearchBarComponent } from "../../components/search-bar/search-bar/searc
 import { Cart } from "../../interfaces/cart";
 import { DonutsService } from "../../services/donuts/donuts.service";
 import { CartDialogComponent } from "../../components/dialogs/cart/cart-dialog.component";
-import { selectCart } from "../../shared/cart/cart.reducer";
+import { selectCart } from "../../shared/selector";
 
 @Component({
   selector: "app-page-products",
