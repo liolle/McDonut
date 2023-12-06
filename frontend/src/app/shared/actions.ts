@@ -4,6 +4,7 @@ import { ApiError, UserProfile } from "../interfaces/api";
 
 export const AuthActions = {
   login: createAction("Login"),
+  neutral: createAction("Neutral action"),
   logout: createAction("Logout"),
   profile: createAction("Profile"),
   loadProfileSuccess: createAction(

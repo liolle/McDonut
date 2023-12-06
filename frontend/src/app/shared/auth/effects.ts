@@ -26,4 +26,14 @@ export class AuthEffects {
       })
     )
   );
+
+  login$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.login),
+
+      switchMap(() => {
+        return this.authService.login().pipe(map(() => AuthActions.neutral()));
+      })
+    )
+  );
 }
