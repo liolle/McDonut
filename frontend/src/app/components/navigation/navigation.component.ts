@@ -1,6 +1,9 @@
 import { CommonModule } from "@angular/common";
-import { Component, Input } from "@angular/core";
+import { Component, OnInit, inject } from "@angular/core";
 import { Router } from "@angular/router";
+import { Store } from "@ngrx/store";
+import { GeneralS } from "../../shared/reducer";
+import { selectPage } from "../../shared/selector";
 
 interface Link {
   name: string;
@@ -13,16 +16,22 @@ interface Link {
   imports: [CommonModule],
   templateUrl: "./navigation.component.html"
 })
-export class PageNavigationComponent {
+export class PageNavigationComponent implements OnInit {
   links: Link[] = [
     { name: "home", navigation: "/" },
     { name: "products", navigation: "/products" }
   ];
 
-  @Input()
   activePage!: string;
 
+  private store: Store<{ general: GeneralS }> = inject(Store);
+
   constructor(private router: Router) {}
+  ngOnInit(): void {
+    this.store.select(selectPage).subscribe((val) => {
+      this.activePage = val;
+    });
+  }
 
   navigate(name: string) {
     this.router.navigate([name]);
