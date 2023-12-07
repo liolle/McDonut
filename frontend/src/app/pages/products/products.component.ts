@@ -13,6 +13,8 @@ import { Cart } from "../../interfaces/cart";
 import { DonutsService } from "../../services/donuts/donuts.service";
 import { CartDialogComponent } from "../../components/dialogs/cart/cart-dialog.component";
 import { selectCart } from "../../shared/selector";
+import { GeneralS } from "../../shared/reducer";
+import { GeneralActions } from "../../shared/actions";
 
 @Component({
   selector: "app-page-products",
@@ -36,11 +38,13 @@ export class ProductsComponent implements OnInit {
   limit = 9;
   page = 0;
 
-  private readonly store: Store<{ cart: Cart }> = inject(Store);
+  private readonly store: Store<{ cart: Cart; general: GeneralS }> =
+    inject(Store);
   cart$: Observable<Cart>;
 
   constructor(private donutService: DonutsService) {}
   ngOnInit(): void {
+    this.store.dispatch(GeneralActions.changePage({ page: "products" }));
     this.donuts$ = this.donutService.select({
       limit: this.limit,
       page: this.page,
