@@ -21,10 +21,10 @@ import { Store } from "@ngrx/store";
 import { Observable } from "rxjs/internal/Observable";
 import { Donuts } from "../../../class/donut/donut";
 import { Cart } from "../../../interfaces/cart";
-import { addToCart, removeFromCart } from "../../../shared/cart/cart.actions";
+import { CartActions } from "../../../shared/actions";
 import { DialogData } from "../menu/menu.component";
 import { CartComponent } from "../../cards/cart/cart.component";
-import { selectCart } from "../../../shared/cart/cart.reducer";
+import { selectCart } from "../../../shared/selector";
 
 @Component({
   selector: "app-cart-dialog",
@@ -104,10 +104,10 @@ class CartContentComponent implements OnInit {
   }
 
   pushDonut(donut: Donuts) {
-    this.store.dispatch(addToCart({ item: donut }));
+    this.store.dispatch(CartActions.addToCart({ item: donut }));
   }
 
   removeFromCart(donut: Donuts) {
-    this.store.dispatch(removeFromCart({ item: donut }));
+    this.store.dispatch(CartActions.removeFromCart({ item: donut }));
   }
 }

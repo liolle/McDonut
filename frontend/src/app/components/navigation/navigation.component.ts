@@ -1,6 +1,9 @@
 import { CommonModule } from "@angular/common";
-import { Component, Input } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { Router } from "@angular/router";
+import { Store } from "@ngrx/store";
+import { GeneralS } from "../../shared/reducer";
+import { selectPage } from "../../shared/selector";
 
 interface Link {
   name: string;
@@ -19,8 +22,8 @@ export class PageNavigationComponent {
     { name: "products", navigation: "/products" }
   ];
 
-  @Input()
-  activePage!: string;
+  private store: Store<{ general: GeneralS }> = inject(Store);
+  activePage$ = this.store.select(selectPage);
 
   constructor(private router: Router) {}
 

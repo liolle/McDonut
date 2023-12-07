@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { PageNavigationComponent } from "./navigation.component";
+import { StoreModule } from "@ngrx/store";
 
 describe("PageNavigationComponent", () => {
   let component: PageNavigationComponent;
@@ -7,7 +8,7 @@ describe("PageNavigationComponent", () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PageNavigationComponent]
+      imports: [PageNavigationComponent, StoreModule.forRoot({})]
     }).compileComponents();
 
     fixture = TestBed.createComponent(PageNavigationComponent);

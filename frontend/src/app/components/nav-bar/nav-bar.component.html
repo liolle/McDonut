@@ -1,5 +1,5 @@
 <div class="flex w-full items-center justify-between px-4">
-  <div class="flex cursor-pointer select-none">
+  <div class="flex cursor-pointer select-none text-content">
     <app-d-svg />
     <img
       class="h-8 w-8 object-cover"
@@ -11,14 +11,11 @@
     <app-u-svg />
     <app-t-svg />
   </div>
-  <app-navigation [activePage]="activePage" />
+  <app-navigation />
 
-  <button
-    (click)="googleLogin()"
-    class="hidden h-fit rounded-lg bg-content px-3 py-1 text-bgc hover:bg-content/75 md:block"
-  >
-    <span> Login </span>
-  </button>
+  <app-login
+    class="hidden rounded-lg border-2 border-bgc bg-content md:block"
+  />
 
-  <app-menu class="md:hidden" [activePage]="activePage" />
+  <app-menu class="text-content md:hidden" />
 </div>

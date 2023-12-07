@@ -9,22 +9,22 @@
     <ng-icon class="text-bgc" size="1.5rem" name="radixCross2"></ng-icon>
   </button>
 
-  <button
-    class="absolute left-4 top-4 rounded-lg border-2 border-bgc bg-content px-6 py-2 text-bgc hover:bg-content/75"
-  >
-    <span> Login </span>
-  </button>
+  <app-login
+    class="absolute left-4 top-4 rounded-lg border-2 border-bgc bg-content"
+  />
 
   <div class="flex h-full flex-col items-center gap-4 py-20 text-bgc">
-    <button
-      *ngFor="let link of links"
-      (click)="navigate(link.navigation)"
-      class="w-[50%] px-3 py-1 text-xl hover:text-accent-2"
-      [class]="
-        link.name === data.activePage ? ' rounded-lg border-2 border-bgc' : ''
-      "
-    >
-      {{ link.name }}
-    </button>
+    <div *ngFor="let link of links" class="flex w-full justify-center">
+      <button
+        *ngIf="data.activePage | async as activePage"
+        (click)="navigate(link.navigation)"
+        class="w-[50%] px-3 py-1 text-xl"
+        [class]="
+          link.name === activePage ? ' rounded-lg border-2 border-bgc' : ''
+        "
+      >
+        {{ link.name }}
+      </button>
+    </div>
   </div>
 </div>

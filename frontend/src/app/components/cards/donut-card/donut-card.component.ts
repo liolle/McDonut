@@ -8,7 +8,6 @@ import {
   FlipTriggerDirective
 } from "../../../directives/element-flip/element-flip.directive";
 import { Store } from "@ngrx/store";
-import { addToCart } from "../../../shared/cart/cart.actions";
 
 import {
   radixDoubleArrowRight,
@@ -16,6 +15,7 @@ import {
   radixDot
 } from "@ng-icons/radix-icons";
 import { NgIconComponent, provideIcons } from "@ng-icons/core";
+import { CartActions } from "../../../shared/actions";
 
 @Component({
   selector: "app-donut-card",
@@ -39,6 +39,6 @@ export class DonutCardComponent {
   @Input() donut: Donuts;
 
   pushDonut() {
-    this.store.dispatch(addToCart({ item: this.donut }));
+    this.store.dispatch(CartActions.addToCart({ item: this.donut }));
   }
 }
