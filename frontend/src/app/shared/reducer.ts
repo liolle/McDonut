@@ -1,13 +1,8 @@
-import { createReducer, on, createSelector } from "@ngrx/store";
+import { createReducer, on } from "@ngrx/store";
 import { GeneralActions } from "./actions";
 
 export interface GeneralS {
   currentPage: string;
-}
-
-enum AVAILABLE_PAGE {
-  LANDING = "home",
-  PRODUCTS = "products"
 }
 
 const initialState: GeneralS = {
@@ -16,7 +11,7 @@ const initialState: GeneralS = {
 
 export const generalReducer = createReducer(
   initialState,
-  on(GeneralActions.changePage, (state, { page }) => {
+  on(GeneralActions.changePage, (state, { page }): GeneralS => {
     return {
       ...state,
       currentPage: page

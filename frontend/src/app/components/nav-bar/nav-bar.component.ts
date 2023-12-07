@@ -38,8 +38,7 @@ import { LoginComponent } from "../bouttons/login/login.component";
     LoginComponent
   ],
   viewProviders: [provideIcons({ radixHamburgerMenu })],
-  templateUrl: "./nav-bar.component.html",
-  host: { ngSkipHydration: "true" }
+  templateUrl: "./nav-bar.component.html"
 })
 export class NavBarComponent implements OnInit {
   logS = LOG_STATUS;
@@ -59,7 +58,7 @@ export class NavBarComponent implements OnInit {
     this.isStateSet$ = this.store.select(selectStatus).pipe(
       delay(500),
       take(1),
-      switchMap((value) => of(true))
+      switchMap(() => of(true))
     );
   }
 

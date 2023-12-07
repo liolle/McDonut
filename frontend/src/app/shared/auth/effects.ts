@@ -1,10 +1,10 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 
-import { catchError, delay, map, of, switchMap, tap } from "rxjs";
+import { catchError, delay, map, of, switchMap } from "rxjs";
+import { ApiError } from "../../interfaces/api";
 import { AuthService } from "../../services/auth/auth.service";
 import { AuthActions } from "../actions";
-import { ApiError } from "../../interfaces/api";
 
 @Injectable()
 export class AuthEffects {
@@ -13,8 +13,8 @@ export class AuthEffects {
     private authService: AuthService
   ) {}
 
-  loadProfile$ = createEffect(() =>
-    this.actions$.pipe(
+  loadProfile$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(AuthActions.profile),
       switchMap(() => {
         return this.authService.me().pipe(
@@ -24,21 +24,21 @@ export class AuthEffects {
           )
         );
       })
-    )
-  );
+    );
+  });
 
-  login$ = createEffect(() =>
-    this.actions$.pipe(
+  login$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(AuthActions.login),
 
       switchMap(() => {
         return this.authService.login().pipe(map(() => AuthActions.neutral()));
       })
-    )
-  );
+    );
+  });
 
-  logout$ = createEffect(() =>
-    this.actions$.pipe(
+  logout$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(AuthActions.logout),
 
       switchMap(() => {
@@ -47,6 +47,6 @@ export class AuthEffects {
           map(() => AuthActions.logoutSuccess())
         );
       })
-    )
-  );
+    );
+  });
 }

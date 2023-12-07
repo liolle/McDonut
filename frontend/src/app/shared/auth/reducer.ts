@@ -31,35 +31,35 @@ const initialState: UserS = {
 
 export const userReducer = createReducer(
   initialState,
-  on(AuthActions.loadProfileSuccess, (state, { profile }) => {
+  on(AuthActions.loadProfileSuccess, (state, { profile }): UserS => {
     return {
       ...state,
       user: { ...profile },
       status: LOG_STATUS.LOGGED
     };
   }),
-  on(AuthActions.loadProfileFailure, (state, { error }) => {
+  on(AuthActions.loadProfileFailure, (state, { error }): UserS => {
     return {
       ...state,
       error: error.error.errors[0].message,
       status: LOG_STATUS.INCOGNITO
     };
   }),
-  on(AuthActions.profile, (state) => {
+  on(AuthActions.profile, (state): UserS => {
     return state;
   }),
-  on(AuthActions.login, (state) => {
+  on(AuthActions.login, (state): UserS => {
     const apiUrl = environment.apiUrl;
-    const win = window.open(`${apiUrl}/oauth/google/redirect`, "_self");
+    window.open(`${apiUrl}/oauth/google/redirect`, "_self");
     return state;
   }),
-  on(AuthActions.logout, (state) => {
+  on(AuthActions.logout, (state): UserS => {
     return state;
   }),
-  on(AuthActions.neutral, (state) => {
+  on(AuthActions.neutral, (state): UserS => {
     return state;
   }),
-  on(AuthActions.logoutSuccess, (state) => {
+  on(AuthActions.logoutSuccess, (): UserS => {
     return {
       status: LOG_STATUS.PENDING,
       user: {

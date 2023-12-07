@@ -1,4 +1,4 @@
-import { Component, Inject, Input, inject } from "@angular/core";
+import { Component, Inject, inject } from "@angular/core";
 import { Router } from "@angular/router";
 
 interface Link {
@@ -7,9 +7,10 @@ interface Link {
 }
 
 export interface DialogData {
-  activePage: string;
+  activePage: Observable<string>;
 }
 
+import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import {
@@ -23,14 +24,14 @@ import {
 } from "@angular/material/dialog";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
-import { radixCross2, radixHamburgerMenu } from "@ng-icons/radix-icons";
 import { NgIconComponent, provideIcons } from "@ng-icons/core";
-import { CommonModule } from "@angular/common";
+import { radixCross2, radixHamburgerMenu } from "@ng-icons/radix-icons";
 import { Store } from "@ngrx/store";
 import { GeneralActions } from "../../../shared/actions";
 import { GeneralS } from "../../../shared/reducer";
 import { selectPage } from "../../../shared/selector";
 import { LoginComponent } from "../../bouttons/login/login.component";
+import { Observable } from "rxjs";
 @Component({
   selector: "app-menu",
   standalone: true,
@@ -39,24 +40,20 @@ import { LoginComponent } from "../../bouttons/login/login.component";
     MatInputModule,
     FormsModule,
     MatButtonModule,
-    NgIconComponent
+    NgIconComponent,
+    CommonModule
   ],
   templateUrl: "./menu.component.html",
   viewProviders: [provideIcons({ radixHamburgerMenu })]
 })
 export class MenuComponent {
-  activePage!: string;
-
   constructor(public dialog: MatDialog) {}
   private store: Store<{ general: GeneralS }> = inject(Store);
 
+  activePage$ = this.store.select(selectPage);
   openDialog(): void {
-    this.store.select(selectPage).subscribe((val) => {
-      this.activePage = val;
-    });
-
     const dialogRef = this.dialog.open(MenuContentComponent, {
-      data: { activePage: this.activePage },
+      data: { activePage: this.activePage$ },
       panelClass: "menu-dialog"
     });
 

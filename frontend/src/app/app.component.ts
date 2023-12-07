@@ -25,13 +25,10 @@ import { selectPage } from "./shared/selector";
   `
 })
 export class AppComponent implements OnInit {
-  activePage = "landing";
   title = "frontend";
   store: Store<{ user: UserS; general: GeneralS }> = inject(Store);
+  activePage$ = this.store.select(selectPage);
   ngOnInit(): void {
     this.store.dispatch(AuthActions.profile());
-    this.store.select(selectPage).subscribe((page) => {
-      this.activePage = page;
-    });
   }
 }

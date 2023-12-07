@@ -1,8 +1,8 @@
-import { Injectable } from "@angular/core";
-import { environment } from "../../../environments/environment";
 import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { of } from "rxjs";
+import { environment } from "../../../environments/environment";
 import { UserProfile } from "../../interfaces/api";
-import { delay, of } from "rxjs";
 
 @Injectable({
   providedIn: "root"

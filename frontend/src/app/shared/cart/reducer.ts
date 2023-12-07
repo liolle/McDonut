@@ -1,7 +1,7 @@
-import { createReducer, on, createSelector } from "@ngrx/store";
+import { createReducer, on } from "@ngrx/store";
 import { Cart, CartElement } from "../../interfaces/cart";
 import { CartActions } from "../actions";
-import { addMap, removeMap, clearMap } from "./functions";
+import { addMap, clearMap, removeMap } from "./functions";
 
 const initialState: Cart = {
   total: 0,
@@ -34,7 +34,3 @@ export const cartReducer = createReducer(
     };
   })
 );
-
-interface CartState {
-  cart: Cart;
-}
