@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 
-import { catchError, map, of, switchMap, tap } from "rxjs";
+import { catchError, delay, map, of, switchMap, tap } from "rxjs";
 import { AuthService } from "../../services/auth/auth.service";
 import { AuthActions } from "../actions";
 import { ApiError } from "../../interfaces/api";
@@ -33,6 +33,19 @@ export class AuthEffects {
 
       switchMap(() => {
         return this.authService.login().pipe(map(() => AuthActions.neutral()));
+      })
+    )
+  );
+
+  logout$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.logout),
+
+      switchMap(() => {
+        return this.authService.logout().pipe(
+          delay(500),
+          map(() => AuthActions.logoutSuccess())
+        );
       })
     )
   );

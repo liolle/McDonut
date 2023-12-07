@@ -20,6 +20,7 @@ import { cartReducer } from "./shared/cart/reducer";
 import { userReducer } from "./shared/auth/reducer";
 import { provideEffects } from "@ngrx/effects";
 import { AuthEffects } from "./shared/auth/effects";
+import { generalReducer } from "./shared/reducer";
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -28,7 +29,11 @@ export const appConfig: ApplicationConfig = {
     provideRouter(appRoutes),
     provideClientHydration(),
     provideAnimations(),
-    provideStore({ cart: cartReducer, user: userReducer }),
+    provideStore({
+      cart: cartReducer,
+      user: userReducer,
+      general: generalReducer
+    }),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
     provideEffects([AuthEffects])
   ]

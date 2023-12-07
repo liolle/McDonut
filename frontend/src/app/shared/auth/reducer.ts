@@ -8,6 +8,12 @@ export enum LOG_STATUS {
   PENDING = "pending",
   LOGGED = "logged"
 }
+
+export enum USER_ROLE {
+  USER = "user",
+  ADMIN = "admin"
+}
+
 export interface UserS {
   status: LOG_STATUS;
   error?: string;
@@ -48,12 +54,19 @@ export const userReducer = createReducer(
     return state;
   }),
   on(AuthActions.logout, (state) => {
-    return {
-      ...state,
-      status: LOG_STATUS.INCOGNITO
-    };
+    return state;
   }),
   on(AuthActions.neutral, (state) => {
     return state;
+  }),
+  on(AuthActions.logoutSuccess, (state) => {
+    return {
+      status: LOG_STATUS.PENDING,
+      user: {
+        email: "",
+        role: USER_ROLE.USER,
+        createdAt: new Date()
+      }
+    };
   })
 );

@@ -14,11 +14,16 @@ export const AuthActions = {
   loadProfileFailure: createAction(
     "Unauthorized",
     props<{ error: { error: { errors: ApiError[] } } }>()
-  )
+  ),
+  logoutSuccess: createAction("Logout success")
 };
 
 export const CartActions = {
   addToCart: createAction("Adding element ", props<{ item: Donuts }>()),
   removeFromCart: createAction("Remove element", props<{ item: Donuts }>()),
   clearCart: createAction("clearing cart")
+};
+
+export const GeneralActions = {
+  changePage: createAction("Changing page ", props<{ page: string }>())
 };

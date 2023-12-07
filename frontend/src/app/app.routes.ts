@@ -7,19 +7,11 @@ import { refreshAuth } from "./guards/authGard";
 export const appRoutes: Routes = [
   {
     path: "",
-    canActivate: [refreshAuth],
-    loadComponent: () =>
-      import("./pages/landing/landing.component").then(
-        (c) => c.LandingComponent
-      )
+    component: LandingComponent
   },
   {
     path: "products",
-    canActivate: [refreshAuth],
-    loadComponent: () =>
-      import("./pages/products/products.component").then(
-        (c) => c.ProductsComponent
-      )
+    component: ProductsComponent
   },
   { path: "**", component: PageNotFoundComponent }
 ];
