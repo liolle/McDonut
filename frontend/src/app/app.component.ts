@@ -1,13 +1,37 @@
-import { Component } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import { Component, OnInit, inject } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
+import { Store } from "@ngrx/store";
+import { AuthActions } from "./shared/actions";
+import { UserS } from "./shared/auth/reducer";
+import { NavBarComponent } from "./components/nav-bar/nav-bar.component";
+import { GeneralS } from "./shared/reducer";
+import { selectPage } from "./shared/selector";
 
 @Component({
   selector: "app-root",
   standalone: true,
-  imports: [CommonModule, RouterOutlet],
-  template: `<router-outlet> </router-outlet>`
+  imports: [CommonModule, RouterOutlet, NavBarComponent],
+  template: `
+    <div
+      class="flex h-screen min-h-screen flex-col overflow-y-auto bg-accent-1"
+    >
+      <app-nav-bar
+        class=" absolute top-0 z-10 flex h-14 w-full items-center p-2 backdrop-blur-lg"
+      />
+
+      <router-outlet> </router-outlet>
+    </div>
+  `
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  activePage = "landing";
   title = "frontend";
+  store: Store<{ user: UserS; general: GeneralS }> = inject(Store);
+  ngOnInit(): void {
+    this.store.dispatch(AuthActions.profile());
+    this.store.select(selectPage).subscribe((page) => {
+      this.activePage = page;
+    });
+  }
 }
