@@ -13,7 +13,9 @@ export class AuthService {
   constructor(private httpClient: HttpClient) {}
 
   me() {
-    return this.httpClient.get<UserProfile>(`${this.apiUrl}/me`);
+    return this.httpClient.get<UserProfile>(`${this.apiUrl}/me`, {
+      withCredentials: true
+    });
   }
 
   login() {
