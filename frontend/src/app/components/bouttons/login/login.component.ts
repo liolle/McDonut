@@ -38,8 +38,7 @@ import { Spinner1Component } from "../../icons/icon.component";
         </button>
       </ng-template>
     </ng-template>
-  `,
-  styleUrl: "./login.component.css"
+  `
 })
 export class LoginComponent implements OnInit {
   logS = LOG_STATUS;

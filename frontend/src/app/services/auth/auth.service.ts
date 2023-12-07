@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { environment } from "../../../environments/environment";
 import { HttpClient } from "@angular/common/http";
 import { UserProfile } from "../../interfaces/api";
+import { delay, of } from "rxjs";
 
 @Injectable({
   providedIn: "root"
@@ -17,6 +18,7 @@ export class AuthService {
 
   login() {
     window.open(`${this.apiUrl}/oauth/google/redirect`, "_self");
+    return of(true);
   }
 
   logout() {
