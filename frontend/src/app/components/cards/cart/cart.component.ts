@@ -3,11 +3,11 @@ import { CommonModule } from "@angular/common";
 import { Store } from "@ngrx/store";
 import { Observable } from "rxjs/internal/Observable";
 import { Cart } from "../../../interfaces/cart";
-import { addToCart, removeFromCart } from "../../../shared/cart/cart.actions";
 import { Donuts } from "../../../class/donut/donut";
 import { NgIconComponent, provideIcons } from "@ng-icons/core";
 import { radixMinus, radixPlus } from "@ng-icons/radix-icons";
-import { selectCart } from "../../../shared/cart/cart.reducer";
+import { CartActions } from "../../../shared/actions";
+import { selectCart } from "../../../shared/selector";
 
 @Component({
   selector: "app-cart",
@@ -25,10 +25,10 @@ export class CartComponent implements OnInit {
   }
 
   pushDonut(donut: Donuts) {
-    this.store.dispatch(addToCart({ item: donut }));
+    this.store.dispatch(CartActions.addToCart({ item: donut }));
   }
 
   removeFromCart(donut: Donuts) {
-    this.store.dispatch(removeFromCart({ item: donut }));
+    this.store.dispatch(CartActions.removeFromCart({ item: donut }));
   }
 }

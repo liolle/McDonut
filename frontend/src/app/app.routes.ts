@@ -4,7 +4,13 @@ import { PageNotFoundComponent } from "./pages/not-found/not-found.component";
 import { ProductsComponent } from "./pages/products/products.component";
 
 export const appRoutes: Routes = [
-  { path: "", component: LandingComponent },
-  { path: "products", component: ProductsComponent },
+  {
+    path: "",
+    component: LandingComponent
+  },
+  {
+    path: "products",
+    component: ProductsComponent
+  },
   { path: "**", component: PageNotFoundComponent }
 ];
