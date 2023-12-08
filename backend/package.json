@@ -7,7 +7,7 @@
     "build": "node ace build --production",
     "start": "node server.js",
     "test": "node ace test",
-    "migrate": "node ace migration:refresh",
+    "migrate": "node ace migration:run",
     "lint": "eslint . --ext=.ts",
     "lint:fix": "eslint . --ext=.ts --fix",
     "format": "prettier --write .",
@@ -67,11 +67,13 @@
     "@adonisjs/redis": "^7.3.4",
     "@adonisjs/repl": "^3.1.11",
     "@adonisjs/session": "^6.4.0",
+    "@stripe/stripe-js": "^2.2.0",
     "luxon": "^3.4.4",
     "pg": "^8.11.3",
     "phc-bcrypt": "^1.0.8",
     "proxy-addr": "^2.0.7",
     "reflect-metadata": "^0.1.13",
-    "source-map-support": "^0.5.21"
+    "source-map-support": "^0.5.21",
+    "stripe": "^14.7.0"
   }
 }
