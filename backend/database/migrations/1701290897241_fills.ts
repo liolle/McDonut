@@ -85,7 +85,7 @@ export default class extends BaseSchema {
       },
       {
         id: 'D_CHO_03',
-        name: 'caramel crunch ',
+        name: 'caramel crunch',
         price: 2.0,
         picture: 'https://d22f1kls6ex9ii.cloudfront.net/donuts/donut_3.png',
       },
