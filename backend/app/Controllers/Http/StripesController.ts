@@ -20,7 +20,6 @@ export default class StripesController {
       })
       const items: CartItem[] = validation.items
       const session = await new StripeClient().createCheckoutSession(items)
-      console.log(session.url)
       return session.url
     } catch (error) {
       return error

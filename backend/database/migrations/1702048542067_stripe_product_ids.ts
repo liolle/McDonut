@@ -43,7 +43,7 @@ export default class extends BaseSchema {
         productName: 'dark lava',
       },
       {
-        price_id: 'price_1OL4ORICDGrb7btW5zxCOr1X',
+        price_id: 'price_1OLFWAICDGrb7btWdYaGM5y7',
         product_id: 'prod_P9N5aYdRammNLj',
         productName: 'caramel crunch',
       },

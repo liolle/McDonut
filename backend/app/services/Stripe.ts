@@ -21,7 +21,7 @@ export class StripeClient {
       }),
       mode: 'payment',
       success_url: `${process.env.CLIENT}?state=success`,
-      cancel_url: `${process.env.CLIENT}?state=canceled`,
+      cancel_url: `${process.env.CLIENT}/products?state=canceled`,
     })
 
     return session
