@@ -8,6 +8,11 @@ interface SelectInterface {
   keyword: string;
 }
 
+export abstract class CartItem {
+  price_id: string;
+  quantity: number;
+}
+
 @Injectable({
   providedIn: "root"
 })
@@ -27,5 +32,24 @@ export class DonutsService {
       }`,
       { headers: headers }
     );
+  }
+
+  checkout(items: CartItem[]) {
+    const headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    const body = JSON.stringify({
+      items: items
+    });
+    const requestOptions = {
+      method: "POST",
+      headers: headers,
+      body: body
+    };
+    fetch(`${this.apiUrl}/checkout`, requestOptions)
+      .then((response) => response.text())
+      .then((result) => {
+        window.open(result, "_self");
+      })
+      .catch((error) => console.log("error", error));
   }
 }

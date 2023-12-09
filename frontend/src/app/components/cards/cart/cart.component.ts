@@ -8,11 +8,12 @@ import { NgIconComponent, provideIcons } from "@ng-icons/core";
 import { radixMinus, radixPlus } from "@ng-icons/radix-icons";
 import { CartActions } from "../../../shared/actions";
 import { selectCart } from "../../../shared/selector";
+import { CheckoutComponent } from "../../buttons/chekout/checkout.component";
 
 @Component({
   selector: "app-cart",
   standalone: true,
-  imports: [CommonModule, NgIconComponent],
+  imports: [CommonModule, NgIconComponent, CheckoutComponent],
   templateUrl: "./cart.component.html",
   styleUrl: "./cart.component.css",
   viewProviders: [provideIcons({ radixMinus, radixPlus })]
