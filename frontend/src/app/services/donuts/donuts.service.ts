@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "../../../environments/environment";
 import { Donuts } from "../../class/donut/donut";
@@ -35,12 +35,12 @@ export class DonutsService {
   }
 
   checkout(items: CartItem[]) {
-    var headers = new Headers();
+    const headers = new Headers();
     headers.append("Content-Type", "application/json");
-    var body = JSON.stringify({
+    const body = JSON.stringify({
       items: items
     });
-    let requestOptions = {
+    const requestOptions = {
       method: "POST",
       headers: headers,
       body: body

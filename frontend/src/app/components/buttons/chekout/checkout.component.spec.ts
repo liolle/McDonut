@@ -1,18 +1,21 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { CheckoutComponent } from "./checkout.component";
 import { StoreModule } from "@ngrx/store";
-import { DonutsService } from "../../../services/donuts/donuts.service";
+import { CheckoutComponent } from "./checkout.component";
+import { HttpClientTestingModule } from "@angular/common/http/testing";
 
 describe("ChekoutComponent", () => {
   let component: CheckoutComponent;
   let fixture: ComponentFixture<CheckoutComponent>;
-  let service: DonutsService;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CheckoutComponent, StoreModule.forRoot({})]
+      imports: [
+        CheckoutComponent,
+        StoreModule.forRoot({}),
+        HttpClientTestingModule
+      ]
     }).compileComponents();
-    service = TestBed.inject(DonutsService);
     fixture = TestBed.createComponent(CheckoutComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

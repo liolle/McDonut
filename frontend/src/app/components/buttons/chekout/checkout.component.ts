@@ -45,7 +45,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   checkout() {
-    const cartSubscription = this.cart$
+    this.cart$
       .pipe(
         map((val) => {
           const items: CartItem[] = [];
@@ -57,35 +57,10 @@ export class CheckoutComponent implements OnInit {
             });
           }
           return items;
-          this.donutService.checkout(items);
         })
       )
       .subscribe((items) => {
-        const url = this.donutService.checkout(items);
+        this.donutService.checkout(items);
       });
-
-    //   // var myHeaders = new Headers();
-    //   // myHeaders.append("Content-Type", "application/json");
-
-    //   // var raw = JSON.stringify({
-    //   //   items: [
-    //   //     {
-    //   //       price_id: "price_1OL4ORICDGrb7btW5zxCOr1X",
-    //   //       quantity: 1
-    //   //     }
-    //   //   ]
-    //   // });
-
-    //   // let requestOptions = {
-    //   //   method: "POST",
-    //   //   headers: myHeaders,
-    //   //   body: raw
-    //   // };
-
-    //   // fetch("http://localhost:3333/checkout", requestOptions)
-    //   //   .then((response) => response.text())
-    //   //   .then((result) => console.log(result))
-    //   //   .catch((error) => console.log("error", error));
-    // });
   }
 }
