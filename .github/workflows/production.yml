@@ -39,8 +39,12 @@ jobs:
 
       - name: Build Project Artifacts
         run: |
+          set -x
           cd frontend 
+          echo "Starting build process..."
+          echo "VERCEL_TOKEN: ${VERCEL_TOKEN}"
           vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+          echo "Build process completed."
 
       - name: Deploy Project Artifacts
         run: |
