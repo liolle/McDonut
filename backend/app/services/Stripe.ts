@@ -6,12 +6,12 @@ const client = new Stripe(`${process.env.STRIPE_API_KEY}`, {
 })
 
 export abstract class CartItem {
-  price_id: string
-  quantity: number
+  public price_id: string
+  public quantity: number
 }
 
 export class StripeClient {
-  async createCheckoutSession(items: CartItem[]) {
+  public async createCheckoutSession(items: CartItem[]) {
     const session = await client.checkout.sessions.create({
       line_items: items.map((value) => {
         return {
