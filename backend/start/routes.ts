@@ -29,6 +29,8 @@ Route.group(() => {
   })
   Route.get('health', ({ response }) => response.noContent())
 
+  Route.post('checkout', 'StripesController.checkoutSession')
+
   Route.group(() => {
     Route.get('/', 'DonutsController.get')
     Route.post('/', () => 'TODO')

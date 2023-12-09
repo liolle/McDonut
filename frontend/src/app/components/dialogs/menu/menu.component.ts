@@ -30,8 +30,9 @@ import { Store } from "@ngrx/store";
 import { GeneralActions } from "../../../shared/actions";
 import { GeneralS } from "../../../shared/reducer";
 import { selectPage } from "../../../shared/selector";
-import { LoginComponent } from "../../bouttons/login/login.component";
+import { LoginComponent } from "../../buttons/login/login.component";
 import { Observable } from "rxjs";
+import { CheckoutComponent } from "../../buttons/chekout/checkout.component";
 @Component({
   selector: "app-menu",
   standalone: true,
@@ -78,7 +79,8 @@ export class MenuComponent {
     MatDialogActions,
     MatDialogClose,
     NgIconComponent,
-    LoginComponent
+    LoginComponent,
+    CheckoutComponent
   ],
   viewProviders: [provideIcons({ radixCross2 })]
 })

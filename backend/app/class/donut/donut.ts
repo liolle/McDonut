@@ -2,6 +2,7 @@ import { Toppings } from '../toppings/toppings'
 
 export class Donuts {
   public id: string
+  public price_id: string
   public name: string
   public price: number
   public toppings: Toppings[]
@@ -10,6 +11,7 @@ export class Donuts {
 
 export class RawDonuts {
   public donut_id: string
+  public stripe_price_id: string
   public topping_id: string
   public donut_name: string
   public topping_name: string

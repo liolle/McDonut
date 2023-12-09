@@ -19,7 +19,7 @@ import { AuthActions } from "../../shared/actions";
 import { LOG_STATUS, UserS } from "../../shared/auth/reducer";
 import { selectStatus } from "../../shared/selector";
 import { Spinner1Component } from "../icons/icon.component";
-import { LoginComponent } from "../bouttons/login/login.component";
+import { LoginComponent } from "../buttons/login/login.component";
 
 @Component({
   selector: "app-nav-bar",

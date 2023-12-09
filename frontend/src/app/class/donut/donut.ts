@@ -1,7 +1,8 @@
 import { Toppings } from "../toppings/toppings";
 
 export class Donuts {
-  id: string; // should be unit DI_<name>_<optional-version>|00 Ex. DI_chocolate_00
+  id: string;
+  price_id: string;
   name: string;
   price: number;
   toppings: Toppings[];

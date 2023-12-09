@@ -12,7 +12,8 @@ export class DonutService {
     const { rows } = await Database.rawQuery(
       `
       SELECT 
-      d.id as donut_id, 
+      d.id as donut_id,
+      d.stripe_price_id, 
       t.id as topping_id,
       d.name as donut_name, 
       t.name as topping_name, 
@@ -46,6 +47,7 @@ export class DonutService {
       if (!donut) {
         donutMap.set(dr.donut_id, {
           id: dr.donut_id,
+          price_id: dr.stripe_price_id,
           name: dr.donut_name,
           price: dr.donut_price,
           picture: dr.picture,
