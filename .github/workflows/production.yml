@@ -29,6 +29,7 @@ jobs:
         run: |
           cd frontend 
           vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+          echo $?
 
       - name: Deploy Project Artifacts
         run: |
