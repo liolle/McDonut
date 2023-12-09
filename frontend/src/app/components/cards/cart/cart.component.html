@@ -49,12 +49,8 @@
       <span class="text-[2rem]" *ngIf="cart.total !== 0"
         >{{ cart.total }} $</span
       >
-      <button
-        [disabled]="cart.items.size < 1"
-        class="w-full rounded-lg bg-accent-2 py-2 font-bold text-accent-fg shadow-md"
-      >
-        Checkout
-      </button>
+
+      <app-checkout class="w-full" />
     </div>
   </section>
 </div>
