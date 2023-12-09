@@ -2,7 +2,7 @@ import { Toppings } from '../toppings/toppings'
 
 export class Donuts {
   public id: string
-  public priceId: string
+  public price_id: string
   public name: string
   public price: number
   public toppings: Toppings[]

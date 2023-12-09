@@ -47,7 +47,7 @@ export class DonutService {
       if (!donut) {
         donutMap.set(dr.donut_id, {
           id: dr.donut_id,
-          priceId: dr.stripe_price_id,
+          price_id: dr.stripe_price_id,
           name: dr.donut_name,
           price: dr.donut_price,
           picture: dr.picture,

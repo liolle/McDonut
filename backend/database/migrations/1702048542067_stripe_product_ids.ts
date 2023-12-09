@@ -2,8 +2,8 @@ import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 
 interface ProductList {
   productName: string
-  productId: string
-  priceId: string
+  product_id: string
+  price_id: string
 }
 
 export default class extends BaseSchema {
@@ -13,48 +13,48 @@ export default class extends BaseSchema {
 
     await this.setProductId([
       {
-        priceId: 'price_1OL4ZjICDGrb7btWA0Awvhgv',
-        productId: 'prod_P9NK6tOGTChoph',
+        price_id: 'price_1OL4ZjICDGrb7btWA0Awvhgv',
+        product_id: 'prod_P9NK6tOGTChoph',
         productName: 'vanilla coconut',
       },
       {
-        priceId: 'price_1OL4XvICDGrb7btW4faTjyWD',
-        productId: 'prod_P9NHpCkeBc3aFW',
+        price_id: 'price_1OL4XvICDGrb7btW4faTjyWD',
+        product_id: 'prod_P9NHpCkeBc3aFW',
         productName: 'dark elegance',
       },
       {
-        priceId: 'price_1OL4VnICDGrb7btWd506QciM',
-        productId: 'prod_P9NGhnwBjuf1YX',
+        price_id: 'price_1OL4VnICDGrb7btWd506QciM',
+        product_id: 'prod_P9NGhnwBjuf1YX',
         productName: 'choco drift',
       },
       {
-        priceId: 'price_1OL4UZICDGrb7btWpKpXoJCb',
-        productId: 'prod_P9NFfzPtuflSaF',
+        price_id: 'price_1OL4UZICDGrb7btWpKpXoJCb',
+        product_id: 'prod_P9NFfzPtuflSaF',
         productName: 'choco heaven',
       },
       {
-        priceId: 'price_1OL4SnICDGrb7btWs91maDma',
-        productId: 'prod_P9NBTAD0Uxl2Ki',
+        price_id: 'price_1OL4SnICDGrb7btWs91maDma',
+        product_id: 'prod_P9NBTAD0Uxl2Ki',
         productName: 'choco drizzle',
       },
       {
-        priceId: 'price_1OL4PlICDGrb7btWnliRHKTf',
-        productId: 'prod_P9N7VFYAvW6chw',
+        price_id: 'price_1OL4PlICDGrb7btWnliRHKTf',
+        product_id: 'prod_P9N7VFYAvW6chw',
         productName: 'dark lava',
       },
       {
-        priceId: 'price_1OL4ORICDGrb7btW5zxCOr1X',
-        productId: 'prod_P9N5aYdRammNLj',
+        price_id: 'price_1OL4ORICDGrb7btW5zxCOr1X',
+        product_id: 'prod_P9N5aYdRammNLj',
         productName: 'caramel crunch',
       },
       {
-        priceId: 'price_1OL4CUICDGrb7btWSUlr6nOe',
-        productId: 'prod_P9MwdcBWSnbQld',
+        price_id: 'price_1OL4CUICDGrb7btWSUlr6nOe',
+        product_id: 'prod_P9MwdcBWSnbQld',
         productName: 'dual swirl',
       },
       {
-        priceId: 'price_1OL3suICDGrb7btWu7Iv0Qj5',
-        productId: 'prod_P9McbuHP0mddHD',
+        price_id: 'price_1OL3suICDGrb7btWu7Iv0Qj5',
+        product_id: 'prod_P9McbuHP0mddHD',
         productName: 'choco delight',
       },
     ])
@@ -71,8 +71,8 @@ export default class extends BaseSchema {
     await Promise.all(
       productList.map((product) =>
         this.raw('UPDATE donuts SET stripe_prod_id= ?, stripe_price_id= ? WHERE name = ?', [
-          product.productId,
-          product.priceId,
+          product.product_id,
+          product.price_id,
           product.productName,
         ])
       )
