@@ -3,7 +3,7 @@ import { CartItem, StripeClient } from '../../services/Stripe'
 import { schema, rules } from '@ioc:Adonis/Core/Validator'
 
 export default class StripesController {
-  public async checkoutSession({ request }: HttpContextContract) {
+  public async checkoutSession({ request, response }: HttpContextContract) {
     const itemsValidator = schema.create({
       items: schema.array().members(
         schema.object().members({
@@ -13,14 +13,17 @@ export default class StripesController {
       ),
     })
 
-    const validation = await request.validate({
-      schema: itemsValidator,
-      data: request.all(),
-    })
-
-    const items: CartItem[] = validation.items
-
-    const session = await new StripeClient().createCheckoutSession(items)
-    return session.url
+    try {
+      const validation = await request.validate({
+        schema: itemsValidator,
+        data: request.all(),
+      })
+      const items: CartItem[] = validation.items
+      const session = await new StripeClient().createCheckoutSession(items)
+      console.log(session.url)
+      return session.url
+    } catch (error) {
+      return error
+    }
   }
 }
