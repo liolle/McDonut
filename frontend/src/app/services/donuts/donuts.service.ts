@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "../../../environments/environment";
 import { Donuts } from "../../class/donut/donut";
@@ -6,6 +6,11 @@ interface SelectInterface {
   page: number;
   limit: number;
   keyword: string;
+}
+
+export abstract class CartItem {
+  price_id: string;
+  quantity: number;
 }
 
 @Injectable({
@@ -27,5 +32,24 @@ export class DonutsService {
       }`,
       { headers: headers }
     );
+  }
+
+  checkout(items: CartItem[]) {
+    var headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    var body = JSON.stringify({
+      items: items
+    });
+    let requestOptions = {
+      method: "POST",
+      headers: headers,
+      body: body
+    };
+    fetch(`${this.apiUrl}/checkout`, requestOptions)
+      .then((response) => response.text())
+      .then((result) => {
+        window.open(result, "_self");
+      })
+      .catch((error) => console.log("error", error));
   }
 }
