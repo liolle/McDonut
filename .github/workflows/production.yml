@@ -10,7 +10,7 @@ on:
       - opened
     branches:
       - main
-    path:
+    paths:
       - "frontend/**"
 
 jobs:
@@ -23,8 +23,13 @@ jobs:
         with:
           version: 8
 
+      - name: Test sh
+        run: sh -c 'echo hello'
+
       - name: Install Vercel CLI
-        run: npm install --global vercel
+        run: |
+          cd frontend 
+          npm install --global vercel
 
       - name: Pull Vercel Environment Information
         run: |
