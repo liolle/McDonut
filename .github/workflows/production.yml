@@ -28,29 +28,14 @@ jobs:
           version: 8
           run_install: false
 
-      - name: Test sh
-        run: sh -c 'echo hello'
-
       - name: Install Vercel CLI
-        run: |
-          cd frontend 
-          pnpm add --global vercel@latest
+        run: npm install --global vercel
 
       - name: Pull Vercel Environment Information
-        run: |
-          cd frontend 
-          vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }} --cwd frontend
 
       - name: Build Project Artifacts
-        run: |
-          set -x
-          cd frontend 
-          echo "Starting build process..."
-          echo "VERCEL_TOKEN: ${VERCEL_TOKEN}"
-          vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
-          echo "Build process completed."
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}  --cwd frontend
 
       - name: Deploy Project Artifacts
-        run: |
-          cd frontend 
-          vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }} --cwd frontend
