@@ -1,5 +1,4 @@
-FROM node:18.17.0-alpine as base
-
+FROM node:18.18.2 as base
 RUN curl -L https://unpkg.com/@pnpm/self-installer | node
 
 # All deps stage
