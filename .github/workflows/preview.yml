@@ -33,7 +33,8 @@ jobs:
 
       - name: Build Project Artifacts
         run: |
-          set -x
+          node -v
+          pnpm -v
           vercel build --token=${{ secrets.VERCEL_TOKEN }}  --cwd frontend --debug
 
       - name: Deploy Project Artifacts
