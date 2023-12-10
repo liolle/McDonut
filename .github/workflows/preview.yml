@@ -34,7 +34,7 @@ jobs:
       - name: Build Project Artifacts
         run: |
           set -x
-          vercel build --token=${{ secrets.VERCEL_TOKEN }}  --cwd frontend
+          vercel build --token=${{ secrets.VERCEL_TOKEN }}  --cwd frontend --debug
 
       - name: Deploy Project Artifacts
         run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }} --cwd frontend
