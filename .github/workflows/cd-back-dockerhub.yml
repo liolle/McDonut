@@ -2,6 +2,12 @@ name: Push Docker Hub (manually)
 
 on:
   workflow_dispatch:
+    inputs:
+        version:
+          description: 'image verision'
+          required: true
+          type: String
+          
 
 jobs:
   push_to_registry:
@@ -10,7 +16,15 @@ jobs:
     steps:
       - name: Check out the repo
         uses: actions/checkout@v3
-
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.17.0
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+          run_install: false
+          
       - name: Login
         uses: docker/login-action@v2
         with:
@@ -22,4 +36,4 @@ jobs:
         with:
           context: backend/
           push: true
-          tags: leonext/mcdonut:latest
+          tags: leonext/mcdonut:${{ github.event.inputs.version }}
