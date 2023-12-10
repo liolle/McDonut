@@ -1,4 +1,4 @@
-FROM node:18.17.0 as base
+FROM node:18.17.0-alpine as base
 
 RUN curl -L https://unpkg.com/@pnpm/self-installer | node
 
