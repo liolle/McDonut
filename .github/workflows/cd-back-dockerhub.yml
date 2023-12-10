@@ -2,6 +2,12 @@ name: Push Docker Hub (manually)
 
 on:
   workflow_dispatch:
+    inputs:
+        version:
+          description: 'image verision'
+          required: true
+          type: String
+          
 
 jobs:
   push_to_registry:
@@ -22,4 +28,4 @@ jobs:
         with:
           context: backend/
           push: true
-          tags: leonext/mcdonut:latest
+          tags: leonext/mcdonut:${{ github.event.inputs.version }}
