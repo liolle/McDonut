@@ -41,7 +41,7 @@ export const userReducer = createReducer(
   on(AuthActions.loadProfileFailure, (state, { error }): UserS => {
     return {
       ...state,
-      error: error.error.errors[0].message,
+      error: "Load profile failure",
       status: LOG_STATUS.INCOGNITO
     };
   }),
