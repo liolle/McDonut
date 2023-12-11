@@ -17,7 +17,7 @@ import { selectPage } from "./shared/selector";
       class="flex h-screen min-h-screen flex-col overflow-y-auto bg-accent-1"
     >
       <app-nav-bar
-        class=" absolute top-0 z-10 flex h-14 w-full items-center p-2 backdrop-blur-lg"
+        class=" sticky top-0 z-10 flex h-14 w-full items-center p-2 backdrop-blur-lg"
       />
 
       <router-outlet> </router-outlet>
