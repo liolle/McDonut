@@ -3,8 +3,7 @@
     class="fixed top-[55px] z-10 h-10 w-full px-4 xl:hidden"
     (keyword)="processKeyword($event)"
   />
-  <div class="h-12 w-full"></div>
-  <div class="sticky bottom-0 top-0 flex h-screen w-full @container">
+  <div class="sticky bottom-0 top-0 mt-14 flex h-fit w-full @container xl:mt-0">
     <section
       class="sticky top-[56px] hidden h-[calc(100vh-56px)] flex-1 flex-col p-2 xl:flex"
     >
@@ -12,9 +11,9 @@
       <app-cart class="h-full" />
     </section>
     <section
-      class="flex h-full flex-1 items-center justify-center rounded-lg p-4 xl:flex-[0_1_80%]"
+      class="flex h-fit flex-1 items-center justify-center rounded-lg p-4 xl:flex-[0_1_80%]"
     >
-      <div class="flex h-full w-full flex-wrap justify-evenly gap-4">
+      <div class="flex h-fit w-full flex-wrap justify-evenly gap-10">
         <app-donut-card *ngFor="let donut of donuts$ | async" [donut]="donut" />
       </div>
     </section>
