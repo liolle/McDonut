@@ -89,6 +89,7 @@ export default class AuthController {
 
     response.cookie('sessionId', token)
     response.redirect(Env.get('RETURN_TO'))
+    return response
   }
 
   public async me({ auth }: HttpContextContract) {
