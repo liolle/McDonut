@@ -22,7 +22,7 @@ export default class StripesController {
       const session = await new StripeClient().createCheckoutSession(items)
       return session.url
     } catch (error) {
-      return error
+      return response.internalServerError(String(error))
     }
   }
 }

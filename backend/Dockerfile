@@ -1,5 +1,4 @@
-FROM node:20-alpine3.18 as base
-RUN apk --no-cache add curl
+FROM node:18.18.2 as base
 RUN curl -L https://unpkg.com/@pnpm/self-installer | node
 
 # All deps stage
