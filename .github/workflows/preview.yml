@@ -36,7 +36,7 @@ jobs:
         run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }} --cwd frontend
 
       - name: Build Project Artifacts
-        run: vercel build --token=${{ secrets.VERCEL_TOKEN }}  --cwd frontend --env VERCEL_BUILD_COMMAND="pnpm build:staging"
+        run: vercel build --token=${{ secrets.VERCEL_TOKEN }}  --cwd frontend
 
       - name: Deploy Project Artifacts
         run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }} --cwd frontend
