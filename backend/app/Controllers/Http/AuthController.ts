@@ -43,8 +43,8 @@ export default class AuthController {
   }
 
   public async logout({ auth, response, session }: HttpContextContract) {
-    await auth.use('api').revoke()
     session.clear()
+    await auth.use('api').revoke()
     response.cookie('sessionId', 'out', {
       domain: 'mcdonut-api.vertix.tech',
       path: '/',
@@ -53,9 +53,8 @@ export default class AuthController {
       sameSite: 'none',
     })
 
-    response.send({
-      revoked: true,
-    })
+    response.redirect(Env.get('RETURN_TO'))
+    return response
   }
 
   public async googleRedirect({ ally }: HttpContextContract) {
