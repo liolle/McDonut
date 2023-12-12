@@ -1,5 +1,6 @@
 FROM node:18.18.2 as base
 RUN curl -L https://unpkg.com/@pnpm/self-installer | node
+RUN apt-get update && apt-get install -y netcat-traditional
 
 # All deps stage
 FROM base as deps

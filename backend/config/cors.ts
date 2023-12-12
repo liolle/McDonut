@@ -6,6 +6,7 @@
  */
 
 import type { CorsConfig } from '@ioc:Adonis/Core/Cors'
+import Env from '@ioc:Adonis/Core/Env'
 
 const corsConfig: CorsConfig = {
   /*
@@ -44,7 +45,21 @@ const corsConfig: CorsConfig = {
   |                     one of the above values.
   |
   */
-  origin: '*',
+  origin: (currentOrigin) => {
+    if (Env.get('NODE_ENV') === 'development') {
+      return (
+        currentOrigin.startsWith('http://localhost') ||
+        currentOrigin.startsWith('https://localhost')
+      )
+    } else {
+      return (
+        currentOrigin === 'https://mcdonut-liolle.vercel.app' ||
+        currentOrigin === 'https://dev-mcdonut-api.vertix.tech' ||
+        currentOrigin === 'https://mcdonut-api.vertix.tech' ||
+        currentOrigin === 'https://mcdonut.vertix.tech'
+      )
+    }
+  },
 
   /*
   |--------------------------------------------------------------------------
