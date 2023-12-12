@@ -89,15 +89,7 @@ export default class AuthController {
     })
 
     response.cookie('sessionId', token, {
-      domain: 'mcdonut-liolle.vercel.app',
-      path: '/',
-      httpOnly: true,
-      secure: true,
-      sameSite: 'none',
-    })
-
-    response.cookie('sessionId', token, {
-      domain: 'mcdonut.vertix.tech',
+      domain: '.vertix.tech',
       path: '/',
       httpOnly: true,
       secure: true,
