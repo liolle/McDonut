@@ -30,7 +30,7 @@ export default class AuthController {
     })
 
     response.cookie('sessionId', token, {
-      domain: '.vertix.tech',
+      domain: 'mcdonut-api.vertix.tech',
       path: '/',
       httpOnly: true,
       secure: true,
@@ -95,7 +95,7 @@ export default class AuthController {
     })
 
     response.cookie('sessionId', token, {
-      domain: '.vertix.tech',
+      domain: 'mcdonut-api.vertix.tech',
       path: '/',
       httpOnly: true,
       secure: true,
