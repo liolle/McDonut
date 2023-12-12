@@ -27,7 +27,6 @@ Route.group(() => {
       hello: 'world',
     }
   })
-  Route.get('health', ({ response }) => response.noContent())
 
   Route.post('checkout', 'StripesController.checkoutSession')
 
@@ -38,10 +37,10 @@ Route.group(() => {
 
     Route.group(() => {
       Route.put(
-        '/historic',
+        '/history',
         ({ response }) => 'Should register the purchase taking the details of a cart'
       )
-      Route.get('/historic', ({ response }) => 'Should show')
+      Route.get('/history', ({ response }) => 'Should show')
     }).middleware('auth')
   }).prefix('donuts')
 
@@ -64,6 +63,6 @@ Route.group(() => {
   Route.group(() => {
     Route.post('/register', 'AuthController.register')
     Route.post('/login', 'AuthController.login')
-    Route.get('/logout', 'AuthController.logout')
+    Route.post('/logout', 'AuthController.logout')
   })
 }).middleware('authCookie')
