@@ -1,6 +1,7 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import User from '../../Models/User'
 import Env from '@ioc:Adonis/Core/Env'
+import Redis from '@ioc:Adonis/Addons/Redis'
 
 export default class AuthController {
   public async register({ request, response }: HttpContextContract) {
@@ -41,10 +42,17 @@ export default class AuthController {
     return response
   }
 
-  public async logout({ auth, response }: HttpContextContract) {
+  public async logout({ auth, response, session }: HttpContextContract) {
     await auth.use('api').revoke()
+    session.clear()
+    response.cookie('sessionId', 'out', {
+      domain: 'mcdonut-api.vertix.tech',
+      path: '/',
+      httpOnly: true,
+      secure: true,
+      sameSite: 'none',
+    })
 
-    response.clearCookie('sessionId')
     response.send({
       revoked: true,
     })
