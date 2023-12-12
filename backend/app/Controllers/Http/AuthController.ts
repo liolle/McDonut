@@ -28,7 +28,14 @@ export default class AuthController {
     const token = await auth.attempt(email, password, {
       expiresIn: '90 mins',
     })
-    response.cookie('sessionId', token.token)
+
+    response.cookie('sessionId', token.token, {
+      domain: '.vertix.tech',
+      path: '/',
+      httpOnly: true,
+      secure: true,
+      sameSite: 'none',
+    })
 
     return response.json({
       token: token.token,
@@ -37,7 +44,16 @@ export default class AuthController {
 
   public async logout({ auth, response }: HttpContextContract) {
     await auth.use('api').revoke()
-    response.clearCookie('sessionId')
+
+    response.cookie('sessionId', '', {
+      domain: '.vertix.tech',
+      path: '/',
+      httpOnly: true,
+      secure: true,
+      sameSite: 'none',
+      expires: new Date('Thu, 01 Jan 1970 00:00:01 GMT'),
+    })
+
     return response.json({
       revoked: true,
     })
@@ -87,7 +103,14 @@ export default class AuthController {
       expiresIn: '90 mins',
     })
 
-    response.cookie('sessionId', token)
+    response.cookie('sessionId', token, {
+      domain: '.vertix.tech',
+      path: '/',
+      httpOnly: true,
+      secure: true,
+      sameSite: 'none',
+    })
+
     response.redirect(Env.get('RETURN_TO'))
     return response
   }
