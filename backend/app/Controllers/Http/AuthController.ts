@@ -1,6 +1,7 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import User from '../../Models/User'
 import Env from '@ioc:Adonis/Core/Env'
+import { OpaqueTokenContract } from '@ioc:Adonis/Addons/Auth'
 
 export default class AuthController {
   public async register({ request, response }: HttpContextContract) {
@@ -87,7 +88,22 @@ export default class AuthController {
       expiresIn: '90 mins',
     })
 
-    response.cookie('sessionId', token)
+    response.cookie('sessionId', token, {
+      domain: 'mcdonut-liolle.vercel.app',
+      path: '/',
+      httpOnly: true,
+      secure: true,
+      sameSite: 'none',
+    })
+
+    response.cookie('sessionId', token, {
+      domain: 'mcdonut.vertix.tech',
+      path: '/',
+      httpOnly: true,
+      secure: true,
+      sameSite: 'none',
+    })
+
     response.redirect(Env.get('RETURN_TO'))
     return response
   }
