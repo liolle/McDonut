@@ -24,6 +24,9 @@ export class AuthService {
   }
 
   logout() {
-    return this.httpClient.get<{ revoked: string }>(`${this.apiUrl}/logout`);
+    return this.httpClient.post<{ revoked: string }>(
+      `${this.apiUrl}/logout`,
+      ""
+    );
   }
 }
