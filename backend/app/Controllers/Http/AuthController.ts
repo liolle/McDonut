@@ -29,7 +29,7 @@ export default class AuthController {
       expiresIn: '90 mins',
     })
 
-    response.cookie('sessionId', token.token, {
+    response.cookie('sessionId', token, {
       domain: '.vertix.tech',
       path: '/',
       httpOnly: true,
@@ -37,24 +37,15 @@ export default class AuthController {
       sameSite: 'none',
     })
 
-    return response.json({
-      token: token.token,
-    })
+    response.redirect(Env.get('RETURN_TO'))
+    return response
   }
 
   public async logout({ auth, response }: HttpContextContract) {
     await auth.use('api').revoke()
 
-    response.cookie('sessionId', '', {
-      domain: '.vertix.tech',
-      path: '/',
-      httpOnly: true,
-      secure: true,
-      sameSite: 'none',
-      expires: new Date('Thu, 01 Jan 1970 00:00:01 GMT'),
-    })
-
-    return response.json({
+    response.clearCookie('sessionId')
+    response.send({
       revoked: true,
     })
   }
