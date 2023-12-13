@@ -59,9 +59,10 @@ export const userReducer = createReducer(
   on(AuthActions.neutral, (state): UserS => {
     return state;
   }),
-  on(AuthActions.logoutSuccess, (): UserS => {
+  on(AuthActions.logoutSuccess, (state): UserS => {
+    window.location.reload();
     return {
-      status: LOG_STATUS.PENDING,
+      ...state,
       user: {
         email: "",
         role: USER_ROLE.USER,

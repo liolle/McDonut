@@ -1,69 +1,67 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import User from '../../Models/User'
 import Env from '@ioc:Adonis/Core/Env'
+import { schema, rules } from '@ioc:Adonis/Core/Validator'
 
 export default class AuthController {
+  private credentialValidator = schema.create({
+    email: schema.string({}, [rules.email()]),
+    password: schema.string({}, [rules.confirmed()]),
+  })
   public async register({ request, response }: HttpContextContract) {
-    const { email, password } = request.only(['email', 'password'])
-
     try {
+      const validation = await request.validate({
+        schema: this.credentialValidator,
+        data: request.all(),
+      })
       const user = await User.create({
-        email: email,
-        password: password,
+        email: validation.email,
+        password: validation.password,
       })
 
       return user
     } catch (error) {
-      const { detail } = error
-      return response.forbidden({ message: detail })
+      return response.badRequest(error.messages)
     }
   }
 
-  public async login({ auth, request, response }: HttpContextContract) {
-    const { email, password } = request.only(['email', 'password'])
+  public async login({ auth, request, response, session }: HttpContextContract) {
+    try {
+      const validation = await request.validate({
+        schema: this.credentialValidator,
+        data: request.all(),
+      })
+      await auth.attempt(validation.email, validation.password, {
+        expiresIn: '90 mins',
+      })
 
-    if (!email || !password)
-      return response.unauthorized({ message: 'password or email incorrect' })
+      const user = await User.findOrFail({
+        email: validation.email,
+      })
 
-    const token = await auth.attempt(email, password, {
-      expiresIn: '90 mins',
-    })
+      session.put('email', user.email)
+      session.put('provider', 'google')
+      session.put('role', user.role)
+      session.put('createdAt', user.createdAt)
+      session.put('connected', true)
+    } catch (error) {
+      return response.badRequest(error.messages)
+    }
 
-    response.cookie('sessionId', token.token, {
-      domain: '.vertix.tech',
-      path: '/',
-      httpOnly: true,
-      secure: true,
-      sameSite: 'none',
-    })
-
-    return response.json({
-      token: token.token,
-    })
+    response.redirect(Env.get('RETURN_TO'))
+    return response
   }
 
-  public async logout({ auth, response }: HttpContextContract) {
-    await auth.use('api').revoke()
-
-    response.cookie('sessionId', '', {
-      domain: '.vertix.tech',
-      path: '/',
-      httpOnly: true,
-      secure: true,
-      sameSite: 'none',
-      expires: new Date('Thu, 01 Jan 1970 00:00:01 GMT'),
-    })
-
-    return response.json({
-      revoked: true,
-    })
+  public async logout({ session }: HttpContextContract) {
+    session.clear()
+    return { message: 'session cleared' }
   }
 
   public async googleRedirect({ ally }: HttpContextContract) {
     return ally.use('google').stateless().redirect()
   }
 
-  public async googleCallback({ ally, auth, response }: HttpContextContract) {
+  public async googleCallback({ ally, session, response }: HttpContextContract) {
     const google = ally.use('google').stateless()
 
     if (google.accessDenied()) {
@@ -75,8 +73,6 @@ export default class AuthController {
     }
 
     if (google.hasError()) {
-      console.log(google)
-
       return google.getError()
     }
 
@@ -99,32 +95,16 @@ export default class AuthController {
       }
     )
 
-    const token = await auth.use('api').generate(user, {
-      expiresIn: '90 mins',
-    })
-
-    response.cookie('sessionId', token, {
-      domain: '.vertix.tech',
-      path: '/',
-      httpOnly: true,
-      secure: true,
-      sameSite: 'none',
-    })
-
+    session.put('email', user.email)
+    session.put('provider', 'google')
+    session.put('role', user.role)
+    session.put('createdAt', user.createdAt)
+    session.put('connected', true)
     response.redirect(Env.get('RETURN_TO'))
     return response
   }
 
-  public async me({ auth }: HttpContextContract) {
-    if (!auth.user) {
-      return 'Not connected'
-    }
-    const { email, role, createdAt } = auth.user
-
-    return {
-      email,
-      role,
-      createdAt,
-    }
+  public async me({ session }: HttpContextContract) {
+    return session.all()
   }
 }
