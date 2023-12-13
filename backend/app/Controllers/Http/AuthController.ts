@@ -53,8 +53,10 @@ export default class AuthController {
   }
 
   public async logout({ session }: HttpContextContract) {
-    session.clear()
     session.put('connected', false)
+    session.clear()
+    await session.commit()
+    session.regenerate()
     return { message: 'session cleared' }
   }
 
