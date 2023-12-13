@@ -60,8 +60,8 @@ export default class AuthMiddleware {
   /**
    * Handle request
    */
-  public async handle({ auth }: HttpContextContract, next: () => Promise<void>) {
-    await auth.authenticate()
+  public async handle({ session, response }: HttpContextContract, next: () => Promise<void>) {
+    if (!session.get('connected', false)) response.unauthorized('Not connected')
     await next()
   }
 }
