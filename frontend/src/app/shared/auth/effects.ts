@@ -43,8 +43,9 @@ export class AuthEffects {
 
       switchMap(() => {
         return this.authService.logout().pipe(
-          delay(500),
-          map(() => AuthActions.logoutSuccess())
+          map(() => {
+            return AuthActions.logoutSuccess();
+          })
         );
       })
     );
