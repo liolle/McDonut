@@ -47,7 +47,6 @@ Route.group(() => {
   //Needs Auth
   Route.group(() => {
     Route.get('/me', 'AuthController.me')
-    Route.post('/logout', 'AuthController.logout')
   }).middleware('auth')
 
   // OAUTH2
@@ -64,5 +63,6 @@ Route.group(() => {
   Route.group(() => {
     Route.post('/register', 'AuthController.register')
     Route.post('/login', 'AuthController.login')
+    Route.post('/logout', 'AuthController.logout')
   })
 }).middleware('authCookie')
