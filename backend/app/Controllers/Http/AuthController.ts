@@ -38,9 +38,7 @@ export default class AuthController {
       console.log(token)
 
       session.put('email', 'test')
-      response.cookie('sessionId', token, {
-        domain: `${Env.get('DOMAIN')}`,
-      })
+      response.cookie('sessionId', token)
       return response.ok(token)
     } catch (error) {
       return response.badRequest(error)
@@ -56,7 +54,6 @@ export default class AuthController {
       await auth.use('api').logout()
       console.log('List', cookie)
       response.cookie('sessionId', cookie, {
-        domain: `${Env.get('DOMAIN')}`,
         maxAge: -1,
         httpOnly: true,
         sameSite: 'none',
