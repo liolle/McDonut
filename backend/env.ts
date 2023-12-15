@@ -37,4 +37,5 @@ export default Env.rules({
   RETURN_TO: Env.schema.string(),
   SERVER: Env.schema.string(),
   CLIENT: Env.schema.string(),
+  DOMAIN: Env.schema.string(),
 })
