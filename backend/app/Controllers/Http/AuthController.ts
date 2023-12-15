@@ -56,6 +56,7 @@ export default class AuthController {
       await auth.use('api').logout()
       console.log('List', cookie)
       response.cookie('sessionId', cookie, {
+        domain: `${Env.get('DOMAIN')}`,
         maxAge: -1,
         httpOnly: true,
         sameSite: 'none',
