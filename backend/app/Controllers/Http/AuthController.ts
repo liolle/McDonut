@@ -51,7 +51,8 @@ export default class AuthController {
       if (!connected) return { message: 'session cleared' }
       const cookie = request.cookiesList()
 
-      auth.use('api').logout()
+      await auth.use('api').logout()
+      console.log('List', cookie)
       response.cookie('sessionId', cookie, {
         maxAge: -1,
         httpOnly: true,
@@ -59,7 +60,6 @@ export default class AuthController {
         secure: true,
         expires: new Date('Thu, 01 Jan 1970 00:00:00 GMT'),
       })
-      console.log('List', cookie)
     } catch (error) {
       console.log('ERROR', error)
 
