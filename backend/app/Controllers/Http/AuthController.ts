@@ -47,7 +47,7 @@ export default class AuthController {
 
   public async logout({ request, response, auth, session }: HttpContextContract) {
     try {
-      const cookie = request.cookie('sessionId')
+      const cookie = request.cookiesList()
 
       auth.use('api').logout()
       response.cookie('sessionId', cookie, {
@@ -57,8 +57,7 @@ export default class AuthController {
         secure: true,
         expires: new Date('Thu, 01 Jan 1970 00:00:00 GMT'),
       })
-      console.log(cookie)
-      console.log(session.all())
+      console.log('List', cookie)
     } catch (error) {
       console.log('ERROR', error)
 
