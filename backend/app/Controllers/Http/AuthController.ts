@@ -32,7 +32,7 @@ export default class AuthController {
         schema: this.credentialValidator,
         data: request.all(),
       })
-      const token = await auth.attempt(validation.email, validation.password, {
+      const token = await auth.use('api').attempt(validation.email, validation.password, {
         expiresIn: '90 mins',
       })
       console.log(token)
@@ -45,17 +45,22 @@ export default class AuthController {
     }
   }
 
-  public async logout({ request, response, auth }: HttpContextContract) {
+  public async logout({ request, response, auth, session }: HttpContextContract) {
     try {
-      auth.logout()
-      response.cookie('sessionId', request.cookie('sessionId'), {
+      session.initiate(false)
+      console.log(session.all())
+      const cookie = request.cookie('sessionId')
+
+      auth.use('api').logout()
+      response.cookie('sessionId', cookie, {
         maxAge: -1,
         httpOnly: true,
         sameSite: 'none',
         secure: true,
         expires: new Date('Thu, 01 Jan 1970 00:00:00 GMT'),
       })
-      console.log(response)
+      console.log(cookie)
+      console.log(session.all())
     } catch (error) {
       console.log('ERROR', error)
 
