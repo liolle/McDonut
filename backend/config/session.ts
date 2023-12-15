@@ -5,7 +5,6 @@
  * file.
  */
 
-import Env from '@ioc:Adonis/Core/Env'
 import Application from '@ioc:Adonis/Core/Application'
 import { sessionConfig } from '@adonisjs/session/build/config'
 
@@ -19,7 +18,7 @@ export default sessionConfig({
   | entire application
   |
   */
-  enabled: true,
+  enabled: false,
 
   /*
   |--------------------------------------------------------------------------
@@ -87,7 +86,7 @@ export default sessionConfig({
   cookie: {
     path: '/',
     httpOnly: true,
-    sameSite: false,
+    sameSite: 'none',
   },
 
   /*

@@ -6,7 +6,7 @@ import { schema, rules } from '@ioc:Adonis/Core/Validator'
 export default class AuthController {
   private credentialValidator = schema.create({
     email: schema.string({}, [rules.email()]),
-    password: schema.string({}, [rules.confirmed()]),
+    password: schema.string({}, []),
   })
   public async register({ request, response }: HttpContextContract) {
     try {
@@ -26,43 +26,54 @@ export default class AuthController {
   }
 
   public async login({ auth, request, response, session }: HttpContextContract) {
+    session.initiate(false)
     try {
       const validation = await request.validate({
         schema: this.credentialValidator,
         data: request.all(),
       })
-      await auth.attempt(validation.email, validation.password, {
+      const token = await auth.use('api').attempt(validation.email, validation.password, {
         expiresIn: '90 mins',
       })
+      console.log(token)
 
-      const user = await User.findOrFail({
-        email: validation.email,
-      })
-
-      session.put('email', user.email)
-      session.put('provider', 'google')
-      session.put('role', user.role)
-      session.put('createdAt', user.createdAt)
-      session.put('connected', true)
+      session.put('email', 'test')
+      response.cookie('sessionId', token)
+      return response.ok(token)
     } catch (error) {
-      return response.badRequest(error.messages)
+      return response.badRequest(error)
     }
-
-    response.redirect(Env.get('RETURN_TO'))
-    return response
   }
 
-  public async logout({ session }: HttpContextContract) {
-    session.clear()
+  public async logout({ request, response, auth, session }: HttpContextContract) {
+    try {
+      await auth.use('api').check()
+      // if (!connected) return { message: 'session cleared' }
+      const cookie = request.cookiesList()
+
+      await auth.use('api').logout()
+      console.log('List', cookie)
+      response.cookie('sessionId', cookie, {
+        maxAge: -1,
+        httpOnly: true,
+        sameSite: 'none',
+        secure: true,
+        expires: new Date('Thu, 01 Jan 1970 00:00:00 GMT'),
+      })
+    } catch (error) {
+      console.log('ERROR', error)
+
+      return { message: error }
+    }
     return { message: 'session cleared' }
   }
 
   public async googleRedirect({ ally }: HttpContextContract) {
-    return ally.use('google').stateless().redirect()
+    return ally.use('google').redirect()
   }
 
-  public async googleCallback({ ally, session, response }: HttpContextContract) {
-    const google = ally.use('google').stateless()
+  public async googleCallback({ ally, response, auth }: HttpContextContract) {
+    const google = ally.use('google')
 
     if (google.accessDenied()) {
       return 'Access was denied'
@@ -94,17 +105,13 @@ export default class AuthController {
         access_token: googleUser.token.token,
       }
     )
-
-    session.put('email', user.email)
-    session.put('provider', 'google')
-    session.put('role', user.role)
-    session.put('createdAt', user.createdAt)
-    session.put('connected', true)
+    const token = await auth.use('api').generate(user)
+    response.cookie('sessionId', token)
     response.redirect(Env.get('RETURN_TO'))
     return response
   }
 
-  public async me({ session }: HttpContextContract) {
-    return session.all()
+  public async me({ auth }: HttpContextContract) {
+    return auth.user
   }
 }
