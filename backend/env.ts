@@ -36,4 +36,5 @@ export default Env.rules({
   NODE_ENV: Env.schema.enum(['development', 'production', 'test'] as const),
   RETURN_TO: Env.schema.string(),
   SERVER: Env.schema.string(),
+  CLIENT: Env.schema.string(),
 })
