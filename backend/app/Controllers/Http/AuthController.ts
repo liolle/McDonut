@@ -47,8 +47,6 @@ export default class AuthController {
 
   public async logout({ request, response, auth, session }: HttpContextContract) {
     try {
-      session.initiate(false)
-      console.log(session.all())
       const cookie = request.cookie('sessionId')
 
       auth.use('api').logout()
@@ -109,7 +107,7 @@ export default class AuthController {
     const token = await auth.use('api').generate(user)
     response.cookie('sessionId', token)
     response.redirect(Env.get('RETURN_TO'))
-    return response.ok(token)
+    return response
   }
 
   public async me({ auth }: HttpContextContract) {
