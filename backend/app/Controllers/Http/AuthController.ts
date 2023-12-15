@@ -46,14 +46,21 @@ export default class AuthController {
   }
 
   public async logout({ request, response, auth }: HttpContextContract) {
-    auth.logout()
-    response.cookie('sessionId', request.cookie('sessionId'), {
-      maxAge: -1,
-      httpOnly: true,
-      sameSite: 'none',
-      secure: true,
-      expires: new Date('Thu, 01 Jan 1970 00:00:00 GMT'),
-    })
+    try {
+      auth.logout()
+      response.cookie('sessionId', request.cookie('sessionId'), {
+        maxAge: -1,
+        httpOnly: true,
+        sameSite: 'none',
+        secure: true,
+        expires: new Date('Thu, 01 Jan 1970 00:00:00 GMT'),
+      })
+      console.log(response)
+    } catch (error) {
+      console.log('ERROR', error)
+
+      return { message: error }
+    }
     return { message: 'session cleared' }
   }
 
