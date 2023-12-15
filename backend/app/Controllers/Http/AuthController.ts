@@ -35,7 +35,6 @@ export default class AuthController {
       const token = await auth.use('api').attempt(validation.email, validation.password, {
         expiresIn: '90 mins',
       })
-      console.log(token)
 
       session.put('email', 'test')
       response.cookie('sessionId', token)
@@ -52,7 +51,6 @@ export default class AuthController {
       const cookie = request.cookiesList()
 
       await auth.use('api').logout()
-      console.log('List', cookie)
       response.cookie('sessionId', cookie, {
         maxAge: -1,
         httpOnly: true,
@@ -61,8 +59,6 @@ export default class AuthController {
         expires: new Date('Thu, 01 Jan 1970 00:00:00 GMT'),
       })
     } catch (error) {
-      console.log('ERROR', error)
-
       return { message: error }
     }
     return { message: 'session cleared' }

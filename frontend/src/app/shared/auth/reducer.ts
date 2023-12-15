@@ -60,7 +60,7 @@ export const userReducer = createReducer(
     return state;
   }),
   on(AuthActions.logoutSuccess, (state): UserS => {
-    // window.location.reload();
+    window.location.reload();
     return {
       ...state,
       user: {
