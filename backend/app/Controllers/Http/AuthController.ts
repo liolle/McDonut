@@ -47,6 +47,8 @@ export default class AuthController {
 
   public async logout({ request, response, auth, session }: HttpContextContract) {
     try {
+      const connected = await auth.check()
+      if (!connected) return { message: 'session cleared' }
       const cookie = request.cookiesList()
 
       auth.use('api').logout()
