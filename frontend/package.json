@@ -52,6 +52,7 @@
     "@angular-eslint/template-parser": "17.1.0",
     "@angular/cli": "^17.0.6",
     "@angular/compiler-cli": "^17.0.6",
+    "@ng-icons/simple-icons": "^26.3.0",
     "@ngrx/eslint-plugin": "^17.0.1",
     "@tailwindcss/container-queries": "^0.1.1",
     "@types/express": "^4.17.21",

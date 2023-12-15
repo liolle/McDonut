@@ -97,6 +97,9 @@ devDependencies:
   '@angular/compiler-cli':
     specifier: ^17.0.6
     version: 17.0.6(@angular/compiler@17.0.6)(typescript@5.2.2)
+  '@ng-icons/simple-icons':
+    specifier: ^26.3.0
+    version: 26.3.0
   '@ngrx/eslint-plugin':
     specifier: ^17.0.1
     version: 17.0.1(eslint@8.55.0)(typescript@5.2.2)
@@ -3188,6 +3191,12 @@ packages:
     dependencies:
       tslib: 2.6.2
     dev: false
+
+  /@ng-icons/simple-icons@26.3.0:
+    resolution: {integrity: sha512-usG+EQK2CIMOh8bYtV6eJ13vYs5qk6WkNnaF2n9UhHWk+JtShvYioc5iaWxUvAGYJEl5kiqxLBVxA68czDqtZg==}
+    dependencies:
+      tslib: 2.6.2
+    dev: true
 
   /@ngrx/effects@17.0.1(@angular/core@17.0.6)(@ngrx/store@17.0.1)(rxjs@7.8.1):
     resolution: {integrity: sha512-U7ewZpUoJlLrWyZVyzAMU6Qfxmte7Noi9n/pJb5BR3pWmdHnU+VPs08xnSIQUa0US7K6dJJRTGtcEpEvv/IT4A==}
