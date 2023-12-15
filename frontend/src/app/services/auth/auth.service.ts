@@ -26,7 +26,10 @@ export class AuthService {
   logout() {
     return this.httpClient.post<{ revoked: string }>(
       `${this.apiUrl}/logout`,
-      ""
+      "",
+      {
+        withCredentials: true
+      }
     );
   }
 }

@@ -106,7 +106,10 @@ export default class AuthController {
       }
     )
     const token = await auth.use('api').generate(user)
-    response.cookie('sessionId', token)
+    response.cookie('sessionId', token, {
+      domain: `${Env.get('DOMAIN')}`,
+    })
+
     response.redirect(Env.get('RETURN_TO'))
     return response
   }
