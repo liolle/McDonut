@@ -1,22 +1,23 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { StoreModule } from "@ngrx/store";
-import { LoginButtonComponent } from "./login.component";
+import { LoginFormComponent } from "./login.component";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
-describe("LoginButtonComponent", () => {
-  let component: LoginButtonComponent;
-  let fixture: ComponentFixture<LoginButtonComponent>;
+describe("LoginComponent", () => {
+  let component: LoginFormComponent;
+  let fixture: ComponentFixture<LoginFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        LoginButtonComponent,
-        StoreModule.forRoot({}),
-        HttpClientTestingModule
+        LoginFormComponent,
+        HttpClientTestingModule,
+        BrowserAnimationsModule
       ]
     }).compileComponents();
-    fixture = TestBed.createComponent(LoginButtonComponent);
+
+    fixture = TestBed.createComponent(LoginFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
