@@ -7,14 +7,13 @@ import { Observable } from "rxjs/internal/Observable";
 import { Donuts } from "../../class/donut/donut";
 import { CartComponent } from "../../components/cards/cart/cart.component";
 import { DonutCardComponent } from "../../components/cards/donut-card/donut-card.component";
+import { CartDialogComponent } from "../../components/dialogs/cart/cart-dialog.component";
 import { NavBarComponent } from "../../components/nav-bar/nav-bar.component";
 import { SearchBarComponent } from "../../components/search-bar/search-bar/search-bar.component";
 import { Cart } from "../../interfaces/cart";
 import { DonutsService } from "../../services/donuts/donuts.service";
-import { CartDialogComponent } from "../../components/dialogs/cart/cart-dialog.component";
-import { selectCart } from "../../shared/selector";
 import { GeneralS } from "../../shared/reducer";
-import { GeneralActions } from "../../shared/actions";
+import { selectCart } from "../../shared/selector";
 
 @Component({
   selector: "app-page-products",

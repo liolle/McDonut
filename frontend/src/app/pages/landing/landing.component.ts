@@ -1,11 +1,10 @@
-import { Component, OnInit, inject } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import { Component, inject } from "@angular/core";
 
 import { Router } from "@angular/router";
+import { Store } from "@ngrx/store";
 import { NavBarComponent } from "../../components/nav-bar/nav-bar.component";
 import { StepsComponent } from "../../components/steps/steps.component";
-import { Store } from "@ngrx/store";
-import { GeneralActions } from "../../shared/actions";
 import { GeneralS } from "../../shared/reducer";
 
 @Component({

@@ -19,7 +19,7 @@ import { AuthActions } from "../../shared/actions";
 import { LOG_STATUS, UserS } from "../../shared/auth/reducer";
 import { selectStatus } from "../../shared/selector";
 import { Spinner1Component } from "../icons/icon.component";
-import { LoginComponent } from "../buttons/login/login.component";
+import { LoginButtonComponent } from "../buttons/login/login.component";
 
 @Component({
   selector: "app-nav-bar",
@@ -35,7 +35,7 @@ import { LoginComponent } from "../buttons/login/login.component";
     NgIconComponent,
     MenuComponent,
     Spinner1Component,
-    LoginComponent
+    LoginButtonComponent
   ],
   viewProviders: [provideIcons({ radixHamburgerMenu })],
   templateUrl: "./nav-bar.component.html"

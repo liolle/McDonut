@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Output, inject } from "@angular/core";
+import {
+  Component,
+  EventEmitter,
+  OnDestroy,
+  Output,
+  inject
+} from "@angular/core";
 import {
   FormControl,
   FormGroupDirective,
@@ -7,20 +13,19 @@ import {
   ReactiveFormsModule,
   Validators
 } from "@angular/forms";
+import { ErrorStateMatcher } from "@angular/material/core";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
+import { Observable, Subscription, catchError, map, of } from "rxjs";
 import {
   AuthService,
   LoginFailure,
   LoginSuccess,
   SignUpSuccess
 } from "../../../services/auth/auth.service";
-import { ErrorStateMatcher } from "@angular/material/core";
-import { Observable, Subscription, map, catchError, of } from "rxjs";
-import { Router } from "@angular/router";
 
 @Component({
-  selector: "form-signup",
+  selector: "app-form-signup",
   standalone: true,
   imports: [
     FormsModule,
@@ -76,7 +81,7 @@ import { Router } from "@angular/router";
     </form>
   `
 })
-export class SignupComponent {
+export class SignupComponent implements OnDestroy {
   emailFormControl = new FormControl("", [
     Validators.required,
     Validators.email
@@ -96,7 +101,6 @@ export class SignupComponent {
   auth = inject(AuthService);
 
   loginSubscription: Subscription;
-  constructor(private router: Router) {}
 
   @Output()
   done = new EventEmitter<string>();
@@ -118,9 +122,7 @@ export class SignupComponent {
             error: ""
           };
         }),
-        catchError((error) => {
-          console.log(error);
-
+        catchError(() => {
           return of({ error: "signup failed" });
         })
       )
@@ -132,8 +134,12 @@ export class SignupComponent {
   }
 
   ngOnDestroy(): void {
-    if (!this.loginSubscription) return;
-    this.loginSubscription.unsubscribe();
+    try {
+      this.loginSubscription.unsubscribe();
+      if (!this.loginSubscription) return;
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
 

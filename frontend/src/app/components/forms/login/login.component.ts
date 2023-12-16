@@ -1,4 +1,4 @@
-import { Component, inject } from "@angular/core";
+import { Component, OnDestroy, inject } from "@angular/core";
 import {
   FormControl,
   FormGroupDirective,
@@ -21,7 +21,7 @@ import {
 } from "../../../services/auth/auth.service";
 
 @Component({
-  selector: "form-login",
+  selector: "app-form-login",
   standalone: true,
   imports: [
     FormsModule,
@@ -70,7 +70,7 @@ import {
     </form>
   `
 })
-export class LoginFormComponent {
+export class LoginFormComponent implements OnDestroy {
   emailFormControl = new FormControl("", [
     Validators.required,
     Validators.email
@@ -111,15 +111,19 @@ export class LoginFormComponent {
 
       .subscribe((res) => {
         if (res.error) return;
-        this.router.navigate(["products"]).then((value) => {
+        this.router.navigate(["products"]).then(() => {
           window.location.reload();
         });
       });
   }
 
   ngOnDestroy(): void {
-    if (!this.loginSubscription) return;
-    this.loginSubscription.unsubscribe();
+    try {
+      if (!this.loginSubscription) return;
+      this.loginSubscription.unsubscribe();
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
 

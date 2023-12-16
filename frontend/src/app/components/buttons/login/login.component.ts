@@ -47,7 +47,7 @@ import { Router } from "@angular/router";
     </ng-template>
   `
 })
-export class LoginComponent implements OnInit {
+export class LoginButtonComponent implements OnInit {
   logS = LOG_STATUS;
   isStateSet$ = of(false);
   isLogged$: Observable<boolean>;

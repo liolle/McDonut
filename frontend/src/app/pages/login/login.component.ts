@@ -29,7 +29,7 @@ export class LoginComponent {
 
   index = 0;
 
-  swapTab(event: string) {
+  swapTab() {
     this.index = 0;
   }
 }

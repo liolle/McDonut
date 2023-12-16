@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, OnInit, inject } from "@angular/core";
+import { Component, OnDestroy, OnInit, inject } from "@angular/core";
 import { NavigationEnd, Router, RouterOutlet } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { Subscription } from "rxjs";
@@ -18,7 +18,7 @@ import { selectPage } from "./shared/selector";
     <div
       class="flex h-screen min-h-screen flex-col overflow-y-auto bg-accent-1"
     >
-      <div class="sticky top-0 z-10" *ngIf="currentPath != '/login'">
+      <div class="sticky top-0 z-10" *ngIf="currentPath !== '/login'">
         <app-nav-bar
           class="  flex h-14 w-full items-center p-2 backdrop-blur-lg"
         />
@@ -28,7 +28,7 @@ import { selectPage } from "./shared/selector";
     </div>
   `
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   title = "frontend";
   store: Store<{ user: UserS; general: GeneralS }> = inject(Store);
   currentPath: string;
@@ -51,6 +51,10 @@ export class AppComponent implements OnInit {
     this.store.dispatch(AuthActions.profile());
   }
   ngOnDestroy(): void {
-    this.routerSubscription.unsubscribe();
+    try {
+      this.routerSubscription.unsubscribe();
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
