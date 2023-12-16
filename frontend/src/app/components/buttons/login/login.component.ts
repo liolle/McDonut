@@ -6,6 +6,7 @@ import { AuthActions } from "../../../shared/actions";
 import { LOG_STATUS, UserS } from "../../../shared/auth/reducer";
 import { selectStatus } from "../../../shared/selector";
 import { Spinner1Component } from "../../icons/icon.component";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-login",
@@ -53,6 +54,8 @@ export class LoginComponent implements OnInit {
 
   private readonly store: Store<{ user: UserS }> = inject(Store);
 
+  constructor(private router: Router) {}
+
   ngOnInit(): void {
     this.isLogged$ = this.store
       .select(selectStatus)
@@ -66,7 +69,7 @@ export class LoginComponent implements OnInit {
   }
 
   googleLogin() {
-    this.store.dispatch(AuthActions.login());
+    this.router.navigate(["login"]);
   }
 
   logout() {

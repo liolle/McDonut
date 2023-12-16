@@ -27,16 +27,6 @@ export class AuthEffects {
     );
   });
 
-  login$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(AuthActions.login),
-
-      switchMap(() => {
-        return this.authService.login().pipe(map(() => AuthActions.neutral()));
-      })
-    );
-  });
-
   logout$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AuthActions.logout),
