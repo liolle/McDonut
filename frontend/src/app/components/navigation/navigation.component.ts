@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { GeneralS } from "../../shared/reducer";
 import { selectPage } from "../../shared/selector";
+import { of } from "rxjs";
 
 interface Link {
   name: string;
@@ -23,7 +24,7 @@ export class PageNavigationComponent {
   ];
 
   private store: Store<{ general: GeneralS }> = inject(Store);
-  activePage$ = this.store.select(selectPage);
+  activePage$ = this.store.select(selectPage) || of("/");
 
   constructor(private router: Router) {}
 
