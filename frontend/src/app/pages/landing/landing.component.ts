@@ -14,13 +14,10 @@ import { GeneralS } from "../../shared/reducer";
   imports: [CommonModule, NavBarComponent, StepsComponent],
   templateUrl: "./landing.component.html"
 })
-export class LandingComponent implements OnInit {
+export class LandingComponent {
   private store: Store<{ general: GeneralS }> = inject(Store);
 
   constructor(private router: Router) {}
-  ngOnInit(): void {
-    this.store.dispatch(GeneralActions.changePage({ page: "home" }));
-  }
 
   navigate(name: string) {
     this.router.navigate([name]);

@@ -44,7 +44,6 @@ export class ProductsComponent implements OnInit {
 
   constructor(private donutService: DonutsService) {}
   ngOnInit(): void {
-    this.store.dispatch(GeneralActions.changePage({ page: "products" }));
     this.donuts$ = this.donutService.select({
       limit: this.limit,
       page: this.page,
