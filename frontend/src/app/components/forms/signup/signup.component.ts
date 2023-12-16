@@ -1,4 +1,4 @@
-import { Component, inject } from "@angular/core";
+import { Component, EventEmitter, Output, inject } from "@angular/core";
 import {
   FormControl,
   FormGroupDirective,
@@ -7,21 +7,20 @@ import {
   ReactiveFormsModule,
   Validators
 } from "@angular/forms";
-
-import { ErrorStateMatcher } from "@angular/material/core";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
-import { Router } from "@angular/router";
-import { Subscription, catchError, map, of } from "rxjs";
-import { Observable } from "rxjs/internal/Observable";
 import {
   AuthService,
   LoginFailure,
-  LoginSuccess
+  LoginSuccess,
+  SignUpSuccess
 } from "../../../services/auth/auth.service";
+import { ErrorStateMatcher } from "@angular/material/core";
+import { Observable, Subscription, map, catchError, of } from "rxjs";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: "form-login",
+  selector: "form-signup",
   standalone: true,
   imports: [
     FormsModule,
@@ -30,14 +29,13 @@ import {
     ReactiveFormsModule
   ],
   template: `
-    <form (ngSubmit)="login()" class=" flex flex-col  ">
+    <form (ngSubmit)="signup()" class=" flex flex-col  ">
       <mat-form-field class=" h-20 w-full ">
         <mat-label>Email</mat-label>
         <input
           class=" rounded-lg border border-content"
           type="email"
           matInput
-          autocomplete="email"
           [formControl]="emailFormControl"
           [errorStateMatcher]="matcher"
           placeholder="Ex. pat@example.com"
@@ -54,12 +52,20 @@ import {
         <input
           class=" rounded-lg border border-content"
           type="password"
-          autocomplete="current-password"
           matInput
           [formControl]="passwordFormControl"
           [errorStateMatcher]="passwordMatcher"
         />
 
+        @if (
+          passwordFormControl.hasError("minlength") &&
+          !passwordFormControl.hasError("pattern")
+        ) {
+          <mat-error>Needs 5 characters </mat-error>
+        }
+        @if (passwordFormControl.hasError("pattern")) {
+          <mat-error>Needs 1 capital letter & 1 number </mat-error>
+        }
         @if (passwordFormControl.hasError("required")) {
           <mat-error>Password is <strong>required</strong></mat-error>
         }
@@ -70,7 +76,7 @@ import {
     </form>
   `
 })
-export class LoginFormComponent {
+export class SignupComponent {
   emailFormControl = new FormControl("", [
     Validators.required,
     Validators.email
@@ -78,7 +84,11 @@ export class LoginFormComponent {
 
   loginStatus$: Observable<LoginSuccess | LoginFailure>;
 
-  passwordFormControl = new FormControl("", [Validators.required]);
+  passwordFormControl = new FormControl("", [
+    Validators.required,
+    Validators.minLength(5),
+    Validators.pattern(/^(?=.*[A-Z])(?=.*[0-9]).*$/)
+  ]);
 
   matcher = new MyErrorStateMatcher();
   passwordMatcher = new MyErrorStateMatcher();
@@ -88,32 +98,36 @@ export class LoginFormComponent {
   loginSubscription: Subscription;
   constructor(private router: Router) {}
 
-  login() {
+  @Output()
+  done = new EventEmitter<string>();
+
+  signup() {
     const email = this.emailFormControl.value as string;
     const password = this.passwordFormControl.value as string;
 
     this.loginSubscription = this.auth
-      .credentialLogin({
+      .signup({
         email: email,
         password: password
       })
       .pipe(
-        map((res: LoginSuccess) => {
+        map((res: SignUpSuccess) => {
           return {
-            token: res.token,
+            email: res.email,
+            id: res.id,
             error: ""
           };
         }),
-        catchError((error: { error: LoginFailure }) =>
-          of({ error: error.error.responseText, token: "" })
-        )
+        catchError((error) => {
+          console.log(error);
+
+          return of({ error: "signup failed" });
+        })
       )
 
       .subscribe((res) => {
         if (res.error) return;
-        this.router.navigate(["products"]).then((value) => {
-          window.location.reload();
-        });
+        this.done.emit("done");
       });
   }
 
