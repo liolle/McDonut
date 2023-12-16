@@ -4,6 +4,32 @@ import { of } from "rxjs";
 import { environment } from "../../../environments/environment";
 import { UserProfile } from "../../interfaces/api";
 
+interface Credential {
+  email: string;
+  password: string;
+}
+
+export abstract class LoginSuccess {
+  type: string;
+  token: string;
+  expires_at: string;
+}
+
+export abstract class LoginFailure {
+  responseText: string;
+  guard: string;
+}
+
+export abstract class LoginResponse {
+  error: string;
+  token: string;
+}
+
+export abstract class SignUpSuccess {
+  email: string;
+  id: string;
+}
+
 @Injectable({
   providedIn: "root"
 })
@@ -18,9 +44,22 @@ export class AuthService {
     });
   }
 
-  login() {
+  credentialLogin({ email, password }: Credential) {
+    return this.httpClient.post<LoginSuccess>(`${this.apiUrl}/login`, {
+      email: email,
+      password: password
+    });
+  }
+
+  googleLogin() {
     window.open(`${this.apiUrl}/oauth/google/redirect`, "_self");
-    return of(true);
+  }
+
+  signup({ email, password }: Credential) {
+    return this.httpClient.post<SignUpSuccess>(`${this.apiUrl}/register`, {
+      email: email,
+      password: password
+    });
   }
 
   logout() {
