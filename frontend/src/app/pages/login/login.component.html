@@ -1,25 +1,31 @@
 <div class="flex h-screen w-full items-center justify-center">
-  <section
-    class="flex min-w-[350px] flex-col gap-4 rounded-lg bg-bgc px-8 py-8 shadow-xl"
+  <mat-tab-group
+    [(selectedIndex)]="index"
+    class="px1 flex min-w-[350px] rounded-lg bg-bgc pb-8 shadow-xl"
+    dynamicHeight
   >
-    <div class="flex w-full justify-between">
-      <div></div>
-      <button class="font-semibold text-content underline underline-offset-2">
-        sign up
-      </button>
-    </div>
-    <form-login />
+    <mat-tab class="h-full w-full bg-bgc" label="Sign in">
+      <section class="mt-2 flex flex-col gap-4 px-8">
+        <form-login />
 
-    <div class="flex items-center justify-center gap-2">
-      <mat-divider class="h-[2px] flex-1 rounded-full bg-content/50" />
-      <span class="select-none text-content">OR</span>
-      <mat-divider class="h-[2px] flex-1 rounded-full bg-content/50" />
-    </div>
-    <button
-      class="flex h-10 w-full items-center justify-center gap-2 rounded-lg bg-content text-bgc"
-    >
-      <ng-icon size="1.5rem" name="simpleGoogle"></ng-icon>
-      Sign in with google
-    </button>
-  </section>
+        <div class="flex items-center justify-center gap-2">
+          <mat-divider class="h-[2px] flex-1 rounded-full bg-content/50" />
+          <span class="select-none text-content">OR</span>
+          <mat-divider class="h-[2px] flex-1 rounded-full bg-content/50" />
+        </div>
+        <button
+          (click)="googleLogin()"
+          class="flex h-10 w-full items-center justify-center gap-2 rounded-lg bg-content text-bgc"
+        >
+          <ng-icon size="1.5rem" name="simpleGoogle"></ng-icon>
+          Sign in with google
+        </button>
+      </section>
+    </mat-tab>
+    <mat-tab label="Sign up">
+      <section class="mt-2 flex flex-col gap-4 px-8">
+        <form-signup (done)="swapTab($event)" />
+      </section>
+    </mat-tab>
+  </mat-tab-group>
 </div>
