@@ -32,9 +32,11 @@ export default class AuthController {
         schema: this.credentialValidator,
         data: request.all(),
       })
-      const token = await auth.use('api').attempt(validation.email, validation.password, {
-        expiresIn: '90 mins',
-      })
+
+      await auth.use('api').attempt(validation.email, validation.password)
+
+      const user = await User.findByOrFail('email', validation.email)
+      const token = await auth.use('api').generate(user)
 
       response.cookie('sessionId', token, {
         domain: `${Env.get('DOMAIN')}`,
