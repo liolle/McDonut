@@ -111,7 +111,7 @@ export class LoginFormComponent {
       .subscribe((res) => {
         if (res.error) return;
         this.router.navigate(["products"]).then(() => {
-          // window.location.reload();
+          window.location.reload();
         });
       });
   }
