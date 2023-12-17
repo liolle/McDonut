@@ -1,10 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  OnDestroy,
-  Output,
-  inject
-} from "@angular/core";
+import { Component, EventEmitter, Output, inject } from "@angular/core";
 import {
   FormControl,
   FormGroupDirective,
@@ -16,7 +10,7 @@ import {
 import { ErrorStateMatcher } from "@angular/material/core";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
-import { Observable, Subscription, catchError, map, of } from "rxjs";
+import { Observable, catchError, map, of } from "rxjs";
 import {
   AuthService,
   LoginFailure,
@@ -81,7 +75,7 @@ import {
     </form>
   `
 })
-export class SignupComponent implements OnDestroy {
+export class SignupComponent {
   emailFormControl = new FormControl("", [
     Validators.required,
     Validators.email
@@ -100,8 +94,6 @@ export class SignupComponent implements OnDestroy {
 
   auth = inject(AuthService);
 
-  loginSubscription: Subscription;
-
   @Output()
   done = new EventEmitter<string>();
 
@@ -109,7 +101,7 @@ export class SignupComponent implements OnDestroy {
     const email = this.emailFormControl.value as string;
     const password = this.passwordFormControl.value as string;
 
-    this.loginSubscription = this.auth
+    this.auth
       .signup({
         email: email,
         password: password
@@ -131,15 +123,6 @@ export class SignupComponent implements OnDestroy {
         if (res.error) return;
         this.done.emit("done");
       });
-  }
-
-  ngOnDestroy(): void {
-    try {
-      this.loginSubscription.unsubscribe();
-      if (!this.loginSubscription) return;
-    } catch (error) {
-      console.log(error);
-    }
   }
 }
 
