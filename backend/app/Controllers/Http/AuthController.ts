@@ -36,18 +36,18 @@ export default class AuthController {
         expiresIn: '90 mins',
       })
 
-      session.put('email', 'test')
-      response.cookie('sessionId', token)
+      response.cookie('sessionId', token, {
+        domain: `${Env.get('DOMAIN')}`,
+      })
       return response.ok(token)
     } catch (error) {
       return response.badRequest(error)
     }
   }
 
-  public async logout({ request, response, auth, session }: HttpContextContract) {
+  public async logout({ request, response, auth }: HttpContextContract) {
     try {
       await auth.use('api').check()
-      // if (!connected) return { message: 'session cleared' }
       const cookie = request.cookiesList()
 
       await auth.use('api').logout()
