@@ -112,7 +112,7 @@ export class LoginFormComponent implements OnDestroy {
       .subscribe((res) => {
         if (res.error) return;
         this.router.navigate(["products"]).then(() => {
-          window.location.reload();
+          // window.location.reload();
         });
       });
   }
