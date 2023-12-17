@@ -25,8 +25,7 @@ export default class AuthController {
     }
   }
 
-  public async login({ auth, request, response, session }: HttpContextContract) {
-    session.initiate(false)
+  public async login({ auth, request, response }: HttpContextContract) {
     try {
       const validation = await request.validate({
         schema: this.credentialValidator,
@@ -37,11 +36,11 @@ export default class AuthController {
 
       const user = await User.findByOrFail('email', validation.email)
       const token = await auth.use('api').generate(user)
-
       response.cookie('sessionId', token, {
         domain: `${Env.get('DOMAIN')}`,
       })
-      return response.ok(token)
+
+      return response.ok({})
     } catch (error) {
       return response.badRequest(error)
     }

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, inject } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import {
   FormControl,
   FormGroupDirective,
@@ -12,7 +12,7 @@ import { ErrorStateMatcher } from "@angular/material/core";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { Router } from "@angular/router";
-import { Subscription, catchError, map, of } from "rxjs";
+import { catchError, map, of } from "rxjs";
 import { Observable } from "rxjs/internal/Observable";
 import {
   AuthService,
@@ -70,7 +70,7 @@ import {
     </form>
   `
 })
-export class LoginFormComponent implements OnDestroy {
+export class LoginFormComponent {
   emailFormControl = new FormControl("", [
     Validators.required,
     Validators.email
@@ -85,14 +85,13 @@ export class LoginFormComponent implements OnDestroy {
 
   auth = inject(AuthService);
 
-  loginSubscription: Subscription;
   constructor(private router: Router) {}
 
   login() {
     const email = this.emailFormControl.value as string;
     const password = this.passwordFormControl.value as string;
 
-    this.loginSubscription = this.auth
+    this.auth
       .credentialLogin({
         email: email,
         password: password
@@ -112,18 +111,9 @@ export class LoginFormComponent implements OnDestroy {
       .subscribe((res) => {
         if (res.error) return;
         this.router.navigate(["products"]).then(() => {
-          // window.location.reload();
+          window.location.reload();
         });
       });
-  }
-
-  ngOnDestroy(): void {
-    try {
-      if (!this.loginSubscription) return;
-      this.loginSubscription.unsubscribe();
-    } catch (error) {
-      console.log(error);
-    }
   }
 }
 

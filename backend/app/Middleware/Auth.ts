@@ -60,8 +60,10 @@ export default class AuthMiddleware {
   /**
    * Handle request
    */
-  public async handle({ auth, session }: HttpContextContract, next: () => Promise<void>) {
+  public async handle({ request, auth, session }: HttpContextContract, next: () => Promise<void>) {
     await session.initiate(true)
+    console.log('List', request.cookiesList())
+    console.log(request.url())
     await auth.authenticate()
     await next()
   }
