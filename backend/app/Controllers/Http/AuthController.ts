@@ -40,7 +40,7 @@ export default class AuthController {
         domain: `${Env.get('DOMAIN')}`,
       })
 
-      return response
+      return response.ok({})
     } catch (error) {
       return response.badRequest(error)
     }
