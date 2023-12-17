@@ -70,7 +70,7 @@ import {
     </form>
   `
 })
-export class LoginFormComponent implements OnDestroy {
+export class LoginFormComponent {
   emailFormControl = new FormControl("", [
     Validators.required,
     Validators.email
@@ -115,15 +115,6 @@ export class LoginFormComponent implements OnDestroy {
           // window.location.reload();
         });
       });
-  }
-
-  ngOnDestroy(): void {
-    try {
-      if (!this.loginSubscription) return;
-      this.loginSubscription.unsubscribe();
-    } catch (error) {
-      console.log(error);
-    }
   }
 }
 
