@@ -44,10 +44,16 @@ export class AuthService {
   }
 
   credentialLogin({ email, password }: Credential) {
-    return this.httpClient.post<LoginSuccess>(`${this.apiUrl}/login`, {
-      email: email,
-      password: password
-    });
+    return this.httpClient.post<LoginSuccess>(
+      `${this.apiUrl}/login`,
+      {
+        email: email,
+        password: password
+      },
+      {
+        withCredentials: true
+      }
+    );
   }
 
   googleLogin() {
