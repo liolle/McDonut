@@ -1,4 +1,4 @@
-import { Component, inject } from "@angular/core";
+import { Component, ViewEncapsulation, inject } from "@angular/core";
 import { MatDividerModule } from "@angular/material/divider";
 import { LoginFormComponent } from "../../components/forms/login/login.component";
 import { simpleGoogle } from "@ng-icons/simple-icons";
@@ -18,7 +18,9 @@ import { SignupComponent } from "../../components/forms/signup/signup.component"
     SignupComponent
   ],
   viewProviders: [provideIcons({ simpleGoogle })],
-  templateUrl: "./login.component.html"
+  templateUrl: "./login.component.html",
+  styleUrl: "login.component.css",
+  encapsulation: ViewEncapsulation.None
 })
 export class LoginComponent {
   auth = inject(AuthService);
