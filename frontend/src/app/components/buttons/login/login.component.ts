@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, OnInit, inject } from "@angular/core";
+import { Component, EventEmitter, OnInit, Output, inject } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { Observable, delay, of, switchMap, take } from "rxjs";
 import { AuthActions } from "../../../shared/actions";
@@ -52,6 +52,8 @@ export class LoginButtonComponent implements OnInit {
   isStateSet$ = of(false);
   isLogged$: Observable<boolean>;
 
+  @Output() clicked = new EventEmitter();
+
   private readonly store: Store<{ user: UserS }> = inject(Store);
 
   constructor(private router: Router) {}
@@ -70,6 +72,7 @@ export class LoginButtonComponent implements OnInit {
 
   googleLogin() {
     this.router.navigate(["login"]);
+    this.clicked.emit();
   }
 
   logout() {
