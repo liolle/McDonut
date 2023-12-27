@@ -1,6 +1,7 @@
 <div class="hidden select-none items-center gap-4 md:flex">
-  <div *ngFor="let link of links">
+  <div *ngFor="let link of links$ | async">
     <button
+      *ngIf="link.available"
       (click)="navigate(link.navigation)"
       (keydown.enter)="navigate(link.navigation)"
       [class]="
