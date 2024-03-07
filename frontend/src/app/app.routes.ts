@@ -18,9 +18,5 @@ export const appRoutes: Routes = [
     path: "login",
     component: LoginComponent
   },
-  {
-    path: "profile",
-    component: ProfileComponent
-  },
   { path: "**", component: PageNotFoundComponent }
 ];
