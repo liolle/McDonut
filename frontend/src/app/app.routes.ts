@@ -3,7 +3,6 @@ import { LandingComponent } from "./pages/landing/landing.component";
 import { PageNotFoundComponent } from "./pages/not-found/not-found.component";
 import { ProductsComponent } from "./pages/products/products.component";
 import { LoginComponent } from "./pages/login/login.component";
-import { ProfileComponent } from "./pages/profile/profile.component";
 
 export const appRoutes: Routes = [
   {
