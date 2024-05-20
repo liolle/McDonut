@@ -74,10 +74,6 @@ Mcdonut is an E-commerce shop designed to satisfy your sweet cravings with delic
 
 </div>
 
-### Documentation (comming soon)
-
-...
-
 ### Integration
 
 <a href="https://stripe.com" target="_blank">Stripe</a>
