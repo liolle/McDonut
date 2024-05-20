@@ -14,8 +14,6 @@ Mcdonut is an E-commerce shop designed to satisfy your sweet cravings with delic
   - [x] Search Bar
   - [x] Donuts Display Area
   - [x] Cart Tracking
-- [ ] Profile page
-  - [ ] Display Purchase History
 - [x] Stripe integration.
   - [x] Checkout session
 
