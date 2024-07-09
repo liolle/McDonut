@@ -61,10 +61,10 @@ Mcdonut is an E-commerce shop designed to satisfy your sweet cravings with delic
 
 <div class="" style="display: flex; justify-content: space-around;">
    <div class="">
-    <a href="https://mcdonut.vertix.tech/" target="_blank"> 
+    <a href="https://mcdonut.kodevly.com/" target="_blank"> 
         <img src=".github\images\mcdonut-laptop1.png" style="border-radius:9px;  "/>
     </a>
-     <a href="https://mcdonut.vertix.tech/" target="_blank"> 
+     <a href="https://mcdonut.kodevly.com/" target="_blank"> 
         <img src=".github\images\mcdonut-phone1.png " style="border-radius:9px; "/>
     </a>
    </div>
