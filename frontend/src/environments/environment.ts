@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: "https://kodevly.online"
+  apiUrl: "kodevly.online"
 };
