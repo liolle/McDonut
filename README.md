@@ -7,9 +7,6 @@ Mcdonut is an E-commerce shop designed to satisfy your sweet cravings with delic
 #### Featurew (Current Status):
 
 - [x] Landing page
-- [x] Authentication
-  - [x] Sign-In Form
-  - [x] Sign-Up Form
 - [x] Products page
   - [x] Search Bar
   - [x] Donuts Display Area
