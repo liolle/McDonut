@@ -4,7 +4,7 @@
   "private": true,
   "engines": {
     "node": "18.17.0 || 18.18.2",
-    "pnpm": "~8.12.0"
+   
   },
   "scripts": {
     "dev": "node ace serve --watch",
