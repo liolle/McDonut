@@ -58,6 +58,7 @@ const corsConfig: CorsConfig = {
         currentOrigin === 'https://mcdonut-api.vertix.tech' ||
         currentOrigin === 'https://mcdonut.vertix.tech' ||
         currentOrigin === 'https://kodevly.online' ||
+        currentOrigin === 'https://mcdonut.kodevly.com' ||
         currentOrigin === 'https://kodevly.com'
       )
     }
